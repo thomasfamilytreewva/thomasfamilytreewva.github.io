@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<!---15 jul 2019-->
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<script>
+
+</script>
+
+
+
+<style>
+
+body {
+    background-color: gold;
+}
+
+
+</style>
+
+
+
+    <link rel="stylesheet" href="main.css"/>
+</head>
+<body onload="initialize()">
+
+
+
+<!-- -->
+<div class="sticky">
+<div id="divstyle">
+<div id="header">
+<a href="index.html">Main Menu</a><br>
+<p>Use scroll bars to move tree up/down left/right.</p>
+<p>Click on family member name to see details.</p>
+</div>
+</div>
+</div>
+
+
+
+<!--<div class="section"></div>-->
+    <div id="information_panel"></div>
+
+
+
+<div id="main">
+    <canvas id="canvas"></canvas>
+</div>
+
+
+<div id="control_panel">
+    <div class="section">Control Panel</div>
+    <button id="add_child">Add Child</button>
+    <button id="remove_node">Remove Node</button>
+    <button id="zoom_in">Zoom In</button>
+    <button id="zoom_out">Zoom Out</button>
+    
+	
+</div>
+
+
+<div id="divider"></div>
+
+<!--
+
+-->
+<br>
+
+
+<div id="associatedAssets"></div>
+
+
+<table id="myTable">
+
+<br>
+
+<!--
+<div id='ajax' >
+<h3>This is the ajax div</h3>
+  <p>This is a paragraph.</p>
+</div>
+
+-->
+
+<br>
+
+<p id="demo"></p>
+
+
+
+<script src="tree.js"></script>
+<script src="main.js"></script>
+<?php include 'myPhpFunctions.php';?>
+
+
+</body>
+</html>
