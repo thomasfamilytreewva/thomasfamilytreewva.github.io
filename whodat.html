@@ -12,7 +12,14 @@
 
 
 <script>
- function showRandomPhotoMW(){
+ function randomPhoto(){
+  alert("This is randomPhoto");
+ }
+</script>
+
+
+<script>
+ function whoDat(){
   alert("This page is under construction");
  }
 </script>
@@ -42,7 +49,7 @@
 <!--<img src="images/whodat/christiancoe.png" alt="">-->
 
 
-<button onclick='showRandomPhotoMW()'>Click For Random Photo</button>
+<button onclick='randomPhoto()'>Click For Random Photo</button>
 <div id='imageholder'
 <p></p>
 </div>
@@ -51,16 +58,17 @@
 <p>Enter First Name or Nick Name</p>
 <p>Then click on My Guess button</p>
 
-<input type="text" name="fname">
+<input type="text" name="myGuessGuess"><br>
     <button onclick="myGuess()">My Guess</button><br><br>  
 <br>
-
-
-
-
 <br>
-<div id='ajax1'>
-<p></p>
+  <br>
+  <p>Don't know who? Click on Who Dat? button for answer.</p>
+   <button onclick="whoDat()">Who Dat?</button>
+ 
+
+<p id='imageholder'</p>
+
 </div>
 
 

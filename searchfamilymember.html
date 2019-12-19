@@ -74,11 +74,9 @@ nuid=myObj[i].NodeUID;
  
   createTable();
   document.getElementById("myTable").style.visibility = "visible";
-  // addClick();
- addClickTable();
+  document.getElementById("clickForDetails").style.visibility = "visible";
+   addClickTable();
 
-  
- 
  }
  
   }
@@ -112,7 +110,11 @@ nuid=myObj[i].NodeUID;
 	y.appendChild(z6);
   x.appendChild(y);
   document.getElementById("myTable").appendChild(x);
- 
+  
+   var para = document.createElement("p");
+var node = document.createTextNode("Click on family member's name for details.");
+para.appendChild(node);
+
 }
  </script>
  
@@ -169,6 +171,8 @@ myDiv.id=("myDIV");
 			showFamilyMemberInfo();
 			 deleteRows();
 			document.getElementById("myTable").style.visibility = "hidden";
+			document.getElementById("clickForDetails").style.visibility = "hidden";
+   
            				       }
 							   }
 							   }
@@ -282,28 +286,33 @@ ptel1.innerHTML = "Tel: " + tel1;                // Insert text
 document.getElementById("myDIV").appendChild(ptel1);     // Append <p> to <div> with id="myDIV"
 	
 				var pemail = document.createElement("P");                 // Create a <p> element
-pemail.innerHTML = "Tel: " + email;                // Insert text
+pemail.innerHTML = "Email: " + email;                // Insert text
 document.getElementById("myDIV").appendChild(pemail);     // Append <p> to <div> with id="myDIV"
-
   }
   
 </script>
   
-  
-  
-</head>
+ </head>
 <body>
-
-
 
 <a href="index.html">Main Menu</a><br><br>	
 
-
 Enter First Name or Nick Name:<br>
   <input id="searchName" type="text"><br><br>
-  <button onclick="mySearch()">Search</button><br><br>
+  <button id="SearchButton" onclick="mySearch()">Search</button><br><br>
 
+   <script>
+var input = document.getElementById("searchName");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("SearchButton").click();
+  }
+});
+
+</script> 
   
+ <p id="clickForDetails">Click on family member's name for photo and details.</p>
 <table id="myTable">
   <tr>
     <th>NUID</th>
@@ -314,6 +323,12 @@ Enter First Name or Nick Name:<br>
     <th>Nick Name</th>
   </tr>
   </table>
+  
+  <script>
+	document.getElementById("myTable").style.visibility = "hidden";
+			document.getElementById("clickForDetails").style.visibility = "hidden";
+ </script>  
+
   
   <br>
 <div id='imageholder'>
