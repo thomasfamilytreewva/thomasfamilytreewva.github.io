@@ -24,7 +24,7 @@ $.ajax({
     //This will retrieve the contents of the folder if the folder is configured as 'browsable'
    url: 'images/',
     success: function (data) {
-       $("#fileNames").html('<ul>');
+      // $("#fileNames").html('<ul>');
        //List all png file names in the page
    $(data).find("a:contains(.png)").each(function () {
            
