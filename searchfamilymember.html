@@ -165,6 +165,9 @@ myDiv.id=("myDIV");
 
             // Get the row id where the cell exists
 			rowIndex=(this.rowIndex);
+			if (rowIndex==0){
+			return;
+			}
 			//alert(rowIndex);
 			idvar = (this.cells[0].innerHTML);
 			showPhoto();
