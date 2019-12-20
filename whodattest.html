@@ -145,7 +145,19 @@ if (ch >= '0' && ch <= '9')
 
 <script>
 function myGuessArray(){
-alert (mgp + " This is function myGuessArray");
+//alert (mgp + " This is function myGuessArray");
+
+for (i in myObj) {
+nuid=myObj[i].NodeUID;
+if (nuid==mgp){
+fnn=myObj[i].FirstNickName;
+//fnn = fnn.toUpperCase();
+ // alert(fnn);
+  mgp = fnn
+}else{
+//do nothing
+}
+}
 }
 </script>
 
@@ -158,13 +170,29 @@ function myGuessText(){
 
 <script>
 function myGuessCompare(){
-alert("My Guess Photo = " + mgp + "   My Guess Text = " + mgt);
-if (mgp==mgt){
-alert("Match")
+//alert("My Guess Photo = " + mgp + "   My Guess Text = " + mgt);
+mgpUC = mgp.toUpperCase();
+mgtUC = mgt.toUpperCase();
+if (mgpUC.includes(mgtUC)==true){
+//if (mgpUC==mgtUC){
+alert("You're right. " + mgt)
 }else{
-alert("No Match")
+alert(mgt + " is not correct. Try again or click the WhoDat? button for answer.")
 }
 
+}
+</script>
+
+<script>
+function whoDat(){
+//These lines checks to make sure a Random Photo is selected
+mgp=(document.getElementById("myImg").src);
+if (mgp==""){
+alert("You must select Random Photo.");
+return;
+}else{
+myGuessPhoto();}
+alert("This is " + mgp);
 }
 </script>
 
@@ -172,15 +200,35 @@ alert("No Match")
  
  
 <body>
+  
+<a href="index.html">Main Menu</a><br>
+
+
+<p>Who Dat?</p>
+<p>See if you can name your relatives.</p>
+
+
   <button id="SearchButton" onclick="randomPhoto()">Show Random Photo</button><br><br>
-<img id="myImg">
+  <img id="myImg">
 
 <p>Enter First Name or Nick Name</p>
 <input id="myGuessText" type="text" name="guessName"><br>
 
 <p>Then click on My Guess button</p>
 
-    <button onclick="myGuess()">My Guess</button><br>
+    <button id="myGuessButton" onclick="myGuess()">My Guess</button><br>
+	 <script>
+var input = document.getElementById("myGuessText");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("myGuessButton").click();
+  }
+});
+
+</script> 
+  
+
 	
   <p>Don't know who? Click on Who Dat? button for answer.</p>
    <button onclick="whoDat()">Who Dat?</button>

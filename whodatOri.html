@@ -1,13 +1,9 @@
+<!--25 Nov 2018-->
 <!doctype html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-</style>
 <script src="jquery-3.3.1.js">
-</script>
-<script>
-var myObj = JSON.parse(localStorage["myObj"]);
 //var myArray = new Array();
 //var myArray = [];
 var myArrayLength;
@@ -22,7 +18,7 @@ var ai=0;
 var myArrayRandom = [];
 $.ajax({
     //This will retrieve the contents of the folder if the folder is configured as 'browsable'
-   url: 'images/',
+   url: 'Images/',
     success: function (data) {
        $("#fileNames").html('<ul>');
        //List all png file names in the page
@@ -37,6 +33,7 @@ $.ajax({
  //document.getElementById("arrayContents").innerHTML = myArray;
 //These lines gets var randomNumber based on length of myArray
 //Then it get fnrn which is the filename based on the randomNumber
+//Then it calls function selectPhoto	
 		myArrayLength=(myArrayRandom.length);
 		randomNumber=(Math.floor(Math.random() * myArrayLength));
 		var photoname=(myArrayRandom[randomNumber]);
@@ -67,123 +64,35 @@ if (ch >= '0' && ch <= '9')
   });
 }
 </script>
-
-
-<script>
-var mgpExitYesNo;
-var mgtExitYesNo;
-var mgp = "";
-var mgt = "";
-function myGuess(){
-//This calls myGuessSetup which checks to make sure
-//a Random Photo is selected and a First Name or Nick Name
-//has been entered.
-myGuessSetup();
-
-if (mgpExitYesNo=="Yes"){
-alert("You must select a Random Photo");
-return;}
-if (mgtExitYesNo=="Yes"){
-alert("You must enter First Name or Nick Name");
-return;}
-
-//This calls function myGuessPhoto which gets the NUID from the photo string
-//Then pulls the FirstNameNickName string from myArray
-myGuessPhoto();
-
-//This calls function myGuessText which gets the user input of FirstName or
-//NickName
-myGuessText();
-
-myGuessCompare();
-}
-</script>
-
-<script>
-function myGuessSetup(){
-//These lines checks to make sure a Random Photo is selected
-mgp=(document.getElementById("myImg").src);
-if (mgp==""){
-mgpExitYesNo ="Yes"
-}else{
-mgpExitYesNo ="No"}
-
-mgt=(document.getElementById("myGuessText").value);
-if (mgt==""){
-mgtExitYesNo ="Yes"
-}else{
-mgtExitYesNo ="No"}
-
-}
-</script>
-
-
-<script>
-function myGuessPhoto(){
-		var str = mgp;
-	var n = str.length;
-var i = 0;
-var di = "";
-var fnrn = "";
-
-for (i = 0; i < n; i++) {
-      ch = str.charAt(i);
-		
-		// check if ch is a letter
-//if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
- 	//str = idvar;
-//	return;
-
-// check if ch is a digit
-if (ch >= '0' && ch <= '9')
-		fnrn = fnrn + ch;
-		mgp=fnrn
-		}
-		myGuessArray();
-}
-</script>
-
-<script>
-function myGuessArray(){
-alert (mgp + " This is function myGuessArray");
-}
-</script>
-
-<script>
-function myGuessText(){
-//mgt is found at myGuessSetup
-//alert(mgt);
-}
-</script>
-
-<script>
-function myGuessCompare(){
-alert("My Guess Photo = " + mgp + "   My Guess Text = " + mgt);
-if (mgp==mgt){
-alert("Match")
-}else{
-alert("No Match")
-}
-
-}
-</script>
-
- </head>
- 
- 
+    <link rel="stylesheet" href="main.css"/>
+</head>
 <body>
-  <button id="SearchButton" onclick="randomPhoto()">Show Random Photo</button><br><br>
+
+<a href="index.html">Main Menu</a><br>
+
+
+<p>Who Dat?</p>
+<p>See if you can name your relatives.</p>
+
+<p id="query"> </p>
+
+ 
+<p></p>
+<!--<img src="images/whodat/christiancoe.png" alt="">-->
+
+
+<button onclick='randomPhoto()'>Click For Random Photo</button><br>
 <img id="myImg">
 
 <p>Enter First Name or Nick Name</p>
-<input id="myGuessText" type="text" name="guessName"><br>
-
 <p>Then click on My Guess button</p>
 
+<input type="text" name="myGuessGuess"><br>
     <button onclick="myGuess()">My Guess</button><br>
 	
   <p>Don't know who? Click on Who Dat? button for answer.</p>
    <button onclick="whoDat()">Who Dat?</button>
+ 
 
- </body>
+</body>
 </html>
