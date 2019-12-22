@@ -1,0 +1,84 @@
+
+<?php
+function testphp(){
+echo ("This is an echo from function testphp file test.php");
+}
+?>
+
+<?php
+echo (js);
+?>
+
+
+<script>
+alert("This is test.js");
+</script>
+
+
+
+<!--Comment HTML-->
+
+<!--<button onclick="test()">test button</button>-->
+<h1>Welcome to my test page!</h1>
+<p>Some text.</p>
+<p>Some more text.</p>
+<?php include 'footer.php';?>
+
+
+
+
+
+
+
+
+
+<h1>Welcome to my test page!</h1>
+<p>Some text.</p>
+<p>Some more text.</p>
+<?php include 'test.php';?>
+
+
+
+
+
+<script>
+function test(){
+}
+ </script>  
+ 
+ 
+ 
+<?php
+$varphp = "This is VarPHP";
+echo $varphp
+?>
+
+
+<?php
+$dir = "images";
+
+// Open a directory, and read its contents
+if (is_dir($dir)){
+  if ($dh = opendir($dir)){
+    while (($file = readdir($dh)) !== false){
+      echo "filename:" . $file . "<br>";
+    }
+    closedir($dh);
+  }
+}
+?>
+
+
+
+
+
+<!--
+There are 2 ways to include a JavaScript file in HTML file:
+
+Put the script tag in the html head with scr attribute to the JS file location. eg <script type="text/javascript" src="jsfile.js"></script>
+Put the script tag in the html head with JS code. eg.
+<script type="text/javascript">
+  alert("This is from JavaScript");
+</script>
+Thank You !
+-->
