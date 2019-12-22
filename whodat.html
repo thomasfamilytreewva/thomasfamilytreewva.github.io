@@ -7,6 +7,7 @@
 <script src="https://thomasfamilytreewva.github.io/jquery-3.3.1.js"></script>
 <script>
 var myObj = JSON.parse(localStorage["myObj"]);
+var arrayPngFiles = JSON.parse(localStorage["arrayPngFiles"]);
 //var myArray = new Array();
 //var myArray = [];
 var myArrayLength;
@@ -19,23 +20,9 @@ function randomPhoto(){
 //alert("This is function RandomPhoto");
 var ai=0;
 var myArrayRandom = [];
-$.ajax({
-    //This will retrieve the contents of the folder if the folder is configured as 'browsable'
- url: 'images/',
-  //url: 'http://cors.io/?https://thomasfamilytreewva.github.io/images',
- // url: 'https://thomasfamilytreewva.github.io/',
-    success: function (data) {
-      // $("#fileNames").html('<ul>');
-       //List all png file names in the page
-   $(data).find("a:contains(.png)").each(function () {
-           
-	   var filename = this.href.replace(window.location.host, "").replace("http:///", "");
-          // $("#fileNames").append( "<li>" + filename + "</li>");
-		   //add filename to array here
-		   myArrayRandom[ai] = filename;
-		   ai=ai+1
-       });
- //document.getElementById("arrayContents").innerHTML = myArray;
+myArrayRandom = arrayPngFiles;
+
+     //document.getElementById("arrayContents").innerHTML = myArray;
 //These lines gets var randomNumber based on length of myArray
 //Then it get fnrn which is the filename based on the randomNumber
 		myArrayLength=(myArrayRandom.length);
@@ -50,12 +37,7 @@ var fnrn = "";
 for (i = 0; i < n; i++) {
    // text += "The number is " + i + "<br>";
 	    ch = str.charAt(i);
-		
-		// check if ch is a letter
-//if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
- 	//str = idvar;
-//	return;
-
+	
 // check if ch is a digit
 if (ch >= '0' && ch <= '9')
 		fnrn = fnrn + ch;
@@ -64,8 +46,8 @@ if (ch >= '0' && ch <= '9')
 //Make sure to use a <img> element with the below code
 	//document.getElementById("myImg").src = "images/15.png";
 	document.getElementById("myImg").src = repImage;
-     }     
-  });
+      
+  
 }
 </script>
 
