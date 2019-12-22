@@ -7,17 +7,27 @@
 <p id="demo"></p>
 
 <script>
+var arrayPngFiles;
+arrayPngFiles =
+["1015.png","1023.png","1060.png","118.png","15.png","21.png","22.png","23.png","24.png","27.png","35.png","36.png","38.png","42.png","43.png","60.png","86.png","87.png"]
+localStorage["arrayPngFiles"] = JSON.stringify(arrayPngFiles);
+</script>
+
+<!--
+<script>
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
-    var arrayPngFiles = JSON.parse(this.responseText);
-    document.getElementById("demo").innerHTML = arrayPngFiles;
-	localStorage["arrayPngFiles"] = JSON.stringify(arrayPngFiles);
+    var arrayPngFilesDemo = JSON.parse(this.responseText);
+    document.getElementById("demo").innerHTML = arrayPngFilesDemo;
+	localStorage["arrayPngFilesDemo"] = JSON.stringify(arrayPngFilesDemo);
   }
 };
 xmlhttp.open("GET", "adminImages.php", true);
 xmlhttp.send();
 </script>
-
+-->
 </body>
+
+
 </html>
