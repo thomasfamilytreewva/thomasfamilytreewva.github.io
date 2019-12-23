@@ -1,3 +1,7 @@
+23 Dec 2019
+Github does not support anything php related. (files, pages, scripts).
+
+
 21 Dec 2019
 html js php thoughts
 I can run js in html page but I cannot run php in html page because 
