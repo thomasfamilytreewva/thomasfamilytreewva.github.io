@@ -3,6 +3,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="jquery-3.3.1.js"></script>
 <style>
 table, th, td {
   border: 1px solid black;
@@ -29,8 +30,8 @@ tr:nth-child(even) {
 
 <script>
 var myTable = document.getElementById("myTable");
-          	
- var myObj = JSON.parse(localStorage["myObj"]);
+        myObj = JSON.parse(window.localStorage.getItem('myObj'));
+		
 var rowIndex;
 
 function mySearch() {
@@ -303,7 +304,12 @@ document.getElementById("myDIV").appendChild(pemail);     // Append <p> to <div>
 Enter First Name or Nick Name:<br>
   <input id="searchName" type="text"><br><br>
   <button id="SearchButton" onclick="mySearch()">Search</button><br><br>
-
+  
+  <p id="demo"></p>
+  
+   <script>
+//document.getElementById("demo").innerHTML=myObj;
+</script>
    <script>
 var input = document.getElementById("searchName");
 input.addEventListener("keyup", function(event) {
