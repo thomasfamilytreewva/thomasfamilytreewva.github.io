@@ -138,6 +138,12 @@ for (i in myObj) {
 nuid=myObj[i].NodeUID;
 if (nuid==mgp){
 fnn=myObj[i].FirstNickName;
+fn=myObj[i].FirstName;
+nn=myObj[i].NickName
+ln=myObj[i].LastName;
+
+
+
 //fnn = fnn.toUpperCase();
  // alert(fnn);
   mgp = fnn
@@ -162,7 +168,7 @@ mgpUC = mgp.toUpperCase();
 mgtUC = mgt.toUpperCase();
 if (mgpUC.includes(mgtUC)==true){
 //if (mgpUC==mgtUC){
-alert("You're right. " + mgt)
+alert("You're right. That is " + mgt + " \(" + fn + " " + nn + " " + ln + "\)");
 }else{
 alert(mgt + " is not correct. Try again or click the WhoDat? button for answer.")
 }
@@ -181,7 +187,8 @@ alert("You must select Random Photo.");
 return;
 }else{
 myGuessPhoto();}
-alert("This is " + mgp);
+//alert(fn + " " + nn + " " + ln)
+alert("That is " + fn + " " + ln + " \(" + nn + "\)");
 }
 </script>
 
