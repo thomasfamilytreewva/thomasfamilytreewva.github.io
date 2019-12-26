@@ -9,14 +9,12 @@ function myObjFromResultsJson(){
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
-   // var myObj = JSON.parse(this.responseText);
+   //This stores the responseText string into an array 
+   //var myObj = JSON.parse(this.responseText);
+   
+   //This stores the responseText string as a string 
 	 var myObj = (this.responseText);
-	alert (myObj);
-	//alert (myObj[1].FirstName );
-  //  document.getElementById("demo").innerHTML = (myObj[1].FirstName );
-	    document.getElementById("myObjStr").innerHTML = (myObj);
-		//var myObj = JSON.parse(myObj);
-		//alert (myObj[1].FirstName );
+		    document.getElementById("myObjStr").innerHTML = (myObj);
 		localStorage.setItem("myObj", myObj);
   }
 };
