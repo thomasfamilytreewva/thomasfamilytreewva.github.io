@@ -14,7 +14,7 @@ xmlhttp.onreadystatechange = function() {
 	alert (myObj);
 	//alert (myObj[1].FirstName );
   //  document.getElementById("demo").innerHTML = (myObj[1].FirstName );
-	    document.getElementById("demo").innerHTML = (myObj);
+	    document.getElementById("myObjStr").innerHTML = (myObj);
 		//var myObj = JSON.parse(myObj);
 		//alert (myObj[1].FirstName );
 		localStorage.setItem("myObj", myObj);
@@ -40,7 +40,7 @@ xmlhttp.send();
 
  <button  onClick="myObjFromResultsJson()"> Create myObj from results json</button><br><br>
 
-<p id="demo"></p>
+<p id="myObjStr"></p>
 
  </body>
 </html>
