@@ -8,28 +8,36 @@
 
 <p id="demo"></p>
 
-<script>
-var arrayPngFiles;
-arrayPngFiles =
-["1015.png","1023.png","1060.png","118.png","15.png","21.png","22.png","23.png","24.png","27.png","35.png","36.png","38.png","42.png","43.png","60.png","86.png","87.png"]
-localStorage["arrayPngFiles"] = JSON.stringify(arrayPngFiles);
-</script>
 
-<!--
 <script>
+function loadPngImages(){
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
-    var arrayPngFilesDemo = JSON.parse(this.responseText);
-    document.getElementById("demo").innerHTML = arrayPngFilesDemo;
-	localStorage["arrayPngFilesDemo"] = JSON.stringify(arrayPngFilesDemo);
+	//saves as string ---> var pngFiles = (this.responseText); 
+		//saves as Object ---> var pngFiles = JSON.parse(this.responseText); 
+		
+		//array = JSON.parse(this.responseText);
+		//localStorage.setItem("array", JSON.stringify(array));
+//array = JSON.parse(localStorage.getItem("array"));
+//alert(array[1]);
+		
+	pngFiles = JSON.parse(this.responseText);
+		localStorage.setItem("pngFiles", JSON.stringify(pngFiles));
+pngFiles = JSON.parse(localStorage.getItem("pngFiles"));
+alert(pngFiles[1]);
+	
   }
 };
 xmlhttp.open("GET", "adminImages.php", true);
 xmlhttp.send();
+}
 </script>
--->
+
 </body>
+<button onclick="loadPngImages()">Load Images PNG</button><br><br>
+<p id="demo">demo here<p/><br><br>
+<p id="demo1">demo1 here<p/><br><br>
 
 
 </html>

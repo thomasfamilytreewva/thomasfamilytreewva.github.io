@@ -12,15 +12,12 @@ xmlhttp.onreadystatechange = function() {
    // var myObj = JSON.parse(this.responseText);
 	 var myObj = (this.responseText);
 	alert (myObj);
-	//var myObj = (this.responseText);
-//alert (myObj[1].FirstName );
+	//alert (myObj[1].FirstName );
   //  document.getElementById("demo").innerHTML = (myObj[1].FirstName );
 	    document.getElementById("demo").innerHTML = (myObj);
 		//var myObj = JSON.parse(myObj);
 		//alert (myObj[1].FirstName );
-	
-	
-	localStorage.setItem("myObj", myObj);
+		localStorage.setItem("myObj", myObj);
   }
 };
 xmlhttp.open("GET", "adminSqlJson.php", true);

@@ -6,14 +6,13 @@
 </style>
 <script src="jquery-3.3.1.js"></script>
 <script>
- 
-// not working alert (myObj[1].FirstName );
-// not working alert (JSON.parse(localStorage["myObj"]));
+//array = JSON.parse(localStorage.getItem("array"));
+//alert(array[1]);
 
-var arrayPngFiles = JSON.parse(localStorage["arrayPngFiles"]);
+pngFiles = JSON.parse(localStorage.getItem("pngFiles"));
+//alert(pngFiles[1]);
+
 var myObj = JSON.parse(localStorage["myObj"]);
-//var myArray = new Array();
-//var myArray = [];
 var myArrayLength;
 		var randomNumber;
 		var fnrn;
@@ -24,7 +23,7 @@ function randomPhoto(){
 //alert("This is function RandomPhoto");
 var ai=0;
 var myArrayRandom = [];
-myArrayRandom = arrayPngFiles;
+myArrayRandom = pngFiles;
 
      //document.getElementById("arrayContents").innerHTML = myArray;
 //These lines gets var randomNumber based on length of myArray
