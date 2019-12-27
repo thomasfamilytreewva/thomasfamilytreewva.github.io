@@ -1,3 +1,15 @@
+
+26 Dec 2019
+Cannot fully automate pngFiles and the myObj process.
+For now I will use their respective PHP pages 
+(adminImages.php and adminSqlJson.php)
+and copy the results into the variable declaration in the <script>
+section of the index.html file.<script> 
+The same <script> will then put the variables in localstorage.
+This way both variables will be available throughout the program
+on all computers, domains and devices after uploading to Github.
+
+
 23 Dec 2019
 Github does not support anything php related. (files, pages, scripts).
 
