@@ -1,3 +1,5 @@
+01 Jan 2019
+localstorage index.html the old storage file must first be deleted.
 
 26 Dec 2019
 Cannot fully automate pngFiles and the myObj process.

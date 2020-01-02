@@ -1,4 +1,3 @@
-<?php include 'C:\xampp\htdocs\thomasfamilytreewva\previous\maincss.php'; ?>
 <?php
 //10 Aug 2019
 $NodeUIDOK='';
@@ -25,7 +24,7 @@ $StreetAddress= $City= $State= $Comments='';
   } else {
 	  $NodeUIDOK = 'ok';
 	  $NodeUID = ($_POST['NodeUID']);
-   echo $NodeUID;
+  // echo $NodeUID;
    //$CrudOption = ($_POST['CrudOption']);
    // echo $CrudOption;
   }
@@ -202,7 +201,12 @@ echo ("This is end of SQL Update");
 <option value='insert'>Insert</option>
 <option value='select'>Select</option>
 <option value='update'>Update</option>
-</select><br>
+</select>
+<input type="submit" name="submit" value="Submit"><br>  
+<span class="error"> <?php echo $NodeUIDErr;?></span>
+<span class="error"> <?php echo $CrudOptionErr;?></span>
+
+<br>
 
  <div>
 <label for="node">Node UID:</label>
@@ -248,9 +252,6 @@ City: <input type="text" name="City" value="<?php echo $City;?>"><br>
 State: <input type="text" name="State" value="<?php echo $State;?>"><br>
 Comments: <input type="text" name="Comments" value="<?php echo $Comments;?>"><br>
 
-<input type="submit" name="submit" value="Submit"><br>  
-<span class="error"> <?php echo $NodeUIDErr;?></span>
-<span class="error"> <?php echo $CrudOptionErr;?></span>
 </form>
 
  </body>

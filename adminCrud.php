@@ -1,4 +1,3 @@
-<?php include 'css/maincss.php'; ?>
 <?php
 //10 Aug 2019
 $NodeUIDOK='';
@@ -54,13 +53,15 @@ $MaidenName = $_POST["MaidenName"];
 $LastName = $_POST["LastName"];
 $NickName = ($_POST['NickName']);
 $DateOfBirth = ($_POST['DateOfBirth']);
-$PlaceOfBirth = ($_POST['PlaceOfBirth']);
+$PlaceOfBirthCity = ($_POST['PlaceOfBirthCity']);
+$PlaceOfBirthState = ($_POST['PlaceOfBirthState']);
 $DateOfDeath = ($_POST['DateOfDeath']);
-$PlaceOfDeath = ($_POST['PlaceOfDeath']);
+$PlaceOfDeathCity = ($_POST['PlaceOfDeathCity']);
+$PlaceOfDeathState = ($_POST['PlaceOfDeathState']);
 $Tel1 = ($_POST['Tel1']);
-$Tel2 = ($_POST['Tel2']);
+//$Tel2 = ($_POST['Tel2']);
 $Email = ($_POST['Email']);
-$StreetAddress= $_POST["StreetAddress"];
+//$StreetAddress= $_POST["StreetAddress"];
 $City= $_POST["City"];
 $State= $_POST["State"];
 $Comments=$_POST["Comments"];
@@ -124,9 +125,11 @@ if ($rowcount == 0){
 	 $LastName=$row['LastName'];
 	 $NickName=$row['NickName'];
 	 $DateOfBirth=$row['DateOfBirth'];
-	 $PlaceOfBirth=$row['PlaceOfBirth'];
+	 $PlaceOfBirthCity=$row['PlaceOfBirthCity'];
+	 $PlaceOfBirthState=$row['PlaceOfBirthState'];
 	 $DateOfDeath=$row['DateOfDeath'];
-	 $PlaceOfDeath=$row['PlaceOfDeath'];
+	 $PlaceOfDeathCity=$row['PlaceOfDeathCity'];
+	  $PlaceOfDeathState=$row['PlaceOfDeathState'];
 	 $Tel1=$row['Tel1'];
 	 $Tel2=$row['Tel2'];
 	 $Email = $row['Email'];
@@ -147,19 +150,21 @@ $Comments=$row["Comments"];
 	 //sql here
 	 
 	 echo ("This is elseif update");
-	 
-	 	   echo ($NodeUID. "   ".$FirstName. "   ".$MiddleName. "   ".$MaidenName. "   
-	   ".$LastName. "   ".$NickName." ".$DateOfBirth." ".$PlaceOfBirth);
+	 echo ($NodeUID. "   ".$FirstName. "   ".$MiddleName. "   ".$MaidenName. "   
+	  ".$LastName. "   ".$NickName." ".$DateOfBirth." ".$PlaceOfBirthCity);
 	  
-	 $sql="UPDATE testtable SET FirstName = '".$FirstName."', MiddleName = '".$MiddleName."',
-	 MaidenName = '".$MaidenName."', LastName = '".$LastName."', NickName = '".$NickName."',
-	 DateOfBirth = '".$DateOfBirth."', PlaceOfBirth = '".$PlaceOfBirth."',
-	  DateOfDeath = '".$DateOfDeath."', PlaceOfDeath = '".$PlaceOfDeath."',
-	   Tel1 = '".$Tel1."', Tel2 = '".$Tel2."', Email = '".$Email."',
+	 $sql="UPDATE testtable SET FirstName = '".$FirstName."', 
+	 MiddleName = '".$MiddleName."',
+	 MaidenName = '".$MaidenName."', 
+	 LastName = '".$LastName."', NickName = '".$NickName."',
+	 DateOfBirth = '".$DateOfBirth."', PlaceOfBirthCity = '".$PlaceOfBirthCity."',
+	 PlaceOfBirthState = '".$PlaceOfBirthState."',
+	 DateOfDeath = '".$DateOfDeath."', PlaceOfDeathCity = '".$PlaceOfDeathCity."',
+	 PlaceOfDeathState = '".$PlaceOfDeathState."',
+     Tel1 = '".$Tel1."', Email = '".$Email."',
 	    StreetAddress = '".$StreetAddress."', City = '".$City."', State = '".$State."',
 		Comments = '".$Comments."'
-	   
-			 WHERE NodeUID = '".$NodeUID."'";
+	   WHERE NodeUID = '".$NodeUID."'";
    
 $result = mysqli_query($conn,$sql);
 echo ("This is end of SQL Update");
@@ -186,7 +191,7 @@ echo ("This is end of SQL Update");
 <body>
 
 <a href="index.html">Main Menu</a><br>
-<a href="adminMenu.html"> Admin Menu</a><br>
+<a href="adminMenu.php"> Admin Menu</a><br>
 
 
  <form action="searchowl.php" method="GET">
@@ -196,14 +201,15 @@ echo ("This is end of SQL Update");
 
 
 <h2>CRUD</h2>
-<form name="formCrud" action="myPhpFunctions.php "method="POST" >
+<form name="formCrud" action="adminCrud.php "method="POST" >
 <select name='CrudOption'>
 <option value=''></option>
 <option value='delete'>Delete</option>
 <option value='insert'>Insert</option>
 <option value='select'>Select</option>
 <option value='update'>Update</option>
-</select><br>
+</select>
+<input type="submit" name="submit" value="Submit"><br><br>  
 
  <div>
 <label for="node">Node UID:</label>
@@ -234,22 +240,24 @@ echo ("This is end of SQL Update");
 
 
 Date Of Birth: <input type="text" name="DateOfBirth" value="<?php echo $DateOfBirth;?>"><br>
-
-
-Place Of Birth: <input type="text" name="PlaceOfBirth" value="<?php echo $PlaceOfBirth;?>"><br>
+Place Of BirthCity: <input type="text" name="PlaceOfBirthCity" value="<?php echo $PlaceOfBirthCity;?>"><br>
+Place Of BirthState: <input type="text" name="PlaceOfBirthState" value="<?php echo $PlaceOfBirthState;?>"><br>
 
 
 Date Of Death: <input type="text" name="DateOfDeath" value="<?php echo $DateOfDeath;?>"><br>
-Place Of Death: <input type="text" name="PlaceOfDeath" value="<?php echo $PlaceOfDeath;?>"><br>
+Place Of DeathCity: <input type="text" name="PlaceOfDeathCity" value="<?php echo $PlaceOfDeathCity;?>"><br>
+Place Of DeathState: <input type="text" name="PlaceOfDeathState" value="<?php echo $PlaceOfDeathState;?>"><br>
+
+
 Tel1: <input type="text" name="Tel1" value="<?php echo $Tel1;?>"><br>
-Tel2: <input type="text" name="Tel2" value="<?php echo $Tel2;?>"><br>
+<!--Tel2: <input type="text" name="Tel2" value="<?php echo $Tel2;?>"><br>-->
 Email: <input type="text" name="Email" value="<?php echo $Email;?>"><br>
-Street Address: <input type="text" name="StreetAddress" value="<?php echo $StreetAddress;?>"><br>
+<!--Street Address: <input type="text" name="StreetAddress" value="<?php echo $StreetAddress;?>"><br>-->
 City: <input type="text" name="City" value="<?php echo $City;?>"><br>
 State: <input type="text" name="State" value="<?php echo $State;?>"><br>
 Comments: <input type="text" name="Comments" value="<?php echo $Comments;?>"><br>
 
-<input type="submit" name="submit" value="Submit"><br>  
+
 <span class="error"> <?php echo $NodeUIDErr;?></span>
 <span class="error"> <?php echo $CrudOptionErr;?></span>
 </form>

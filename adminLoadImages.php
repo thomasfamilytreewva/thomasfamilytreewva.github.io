@@ -1,7 +1,4 @@
-<html>
-<a href="index.html">Main Menu</a><br>
-<a href="adminMenu.php"> Admin Menu</a><br>
-</html>
+
 <?php
 //$q = $_REQUEST["q"];
 //echo $q;
@@ -39,11 +36,5 @@ if (is_dir($dir)){
 $arrayPngFiles = json_encode($arrayPngFiles);
 echo $arrayPngFiles;  
 //}
-
-$myfile = fopen("jsonPngFiles.txt", "w") or die("Unable to open file!");
-$txt = $arrayPngFiles;
-fwrite($myfile, $txt);
-fclose($myfile);
-
 
 ?>

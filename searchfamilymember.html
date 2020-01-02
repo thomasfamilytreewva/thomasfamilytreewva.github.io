@@ -27,7 +27,6 @@ tr:nth-child(even) {
 }
 </style>
 
-
 <script>
 var myTable = document.getElementById("myTable");
 var myObj = JSON.parse(localStorage["myObj"]);
@@ -237,12 +236,18 @@ idvar = "";
  //nn = nn.toUpperCase();
   fnn=myObj[i].FirstNickName;
  //fnn = fnn.toUpperCase();
- pob=myObj[i].PlaceOfBirth;
- //pob = pob.toUpperCase();
+ pobc=myObj[i].PlaceOfBirthCity;
+ //pobc = pobc.toUpperCase();
+ pobs=myObj[i].PlaceOfBirthState;
+ //pobs = pobs.toUpperCase();
+ 
  dob=myObj[i].DateOfBirth;
- //dob = pob.toUpperCase();
- pod=myObj[i].PlaceOfDeath;
- //pod = pod.toUpperCase();
+ //dob = dob.toUpperCase();
+ podc=myObj[i].PlaceOfDeathCity;
+ //podc = podc.toUpperCase();
+ pods=myObj[i].PlaceOfDeathState;
+ //pods = pods.toUpperCase();
+ 
  dod=myObj[i].DateOfDeath;
  //dod = dod.toUpperCase(); 
  tel1=myObj[i].Tel1;
@@ -268,19 +273,27 @@ document.getElementById("myDIV").appendChild(pln);     // Append <p> to <div> wi
 pnn.innerHTML = "Nick Name: " + nn;                // Insert text
 document.getElementById("myDIV").appendChild(pnn);     // Append <p> to <div> with id="myDIV"
 	
-			var ppob = document.createElement("P");                 // Create a <p> element
-ppob.innerHTML = "Place Of Birth: " + pob;                // Insert text
-document.getElementById("myDIV").appendChild(ppob);     // Append <p> to <div> with id="myDIV"
+			var ppobc = document.createElement("P");                 // Create a <p> element
+ppobc.innerHTML = "Place Of Birth City: " + pobc;                // Insert text
+document.getElementById("myDIV").appendChild(ppobc);     // Append <p> to <div> with id="myDIV"
 	
+	var ppobs = document.createElement("P");                 // Create a <p> element
+ppobs.innerHTML = "Place Of Birth State: " + pobs;                // Insert text
+document.getElementById("myDIV").appendChild(ppobs);     // Append <p> to <div> with id="myDIV"
+		
 			var pdob = document.createElement("P");                 // Create a <p> element
 pdob.innerHTML = "Date Of Birth: " + dob;                // Insert text
 document.getElementById("myDIV").appendChild(pdob);     // Append <p> to <div> with id="myDIV"
 	
-			var ppod = document.createElement("P");                 // Create a <p> element
-ppod.innerHTML = "Place Of Death: " + pod;                // Insert text
-document.getElementById("myDIV").appendChild(ppod);     // Append <p> to <div> with id="myDIV"
+			var ppodc = document.createElement("P");                 // Create a <p> element
+ppodc.innerHTML = "Place Of Death City: " + podc;                // Insert text
+document.getElementById("myDIV").appendChild(ppodc);     // Append <p> to <div> with id="myDIV"
 	
-			var pdod = document.createElement("P");                 // Create a <p> element
+			var ppods = document.createElement("P");                 // Create a <p> element
+ppods.innerHTML = "Place Of Death State: " + pods;                // Insert text
+document.getElementById("myDIV").appendChild(ppods);     // Append <p> to <div> with id="myDIV"
+
+	var pdod = document.createElement("P");                 // Create a <p> element
 pdod.innerHTML = "Date Of Death: " + dod;                // Insert text
 document.getElementById("myDIV").appendChild(pdod);     // Append <p> to <div> with id="myDIV"
 
@@ -299,8 +312,8 @@ document.getElementById("myDIV").appendChild(pemail);     // Append <p> to <div>
 <body>
 
 <a href="index.html">Main Menu</a><br><br>	
-
 Enter First Name or Nick Name:<br>
+
   <input id="searchName" type="text"><br><br>
   <button id="SearchButton" onclick="mySearch()">Search</button><br><br>
   

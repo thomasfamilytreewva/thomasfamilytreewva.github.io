@@ -1,3 +1,8 @@
+<html>
+<a href="index.html">Main Menu</a><br>
+<a href="adminMenu.php"> Admin Menu</a><br>
+</html>
+
 <?php
  	//000WebHost Settings
 $servername = "localhost";
@@ -30,4 +35,8 @@ else{
 $myObj = json_encode($data);
 echo $myObj;
 
+$myfile = fopen("jsonMyObj.txt", "w") or die("Unable to open file!");
+$txt = $myObj;
+fwrite($myfile, $txt);
+fclose($myfile);
 ?>
