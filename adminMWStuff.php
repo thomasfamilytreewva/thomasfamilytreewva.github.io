@@ -300,7 +300,7 @@ function updateall(str) {
             if (this.readyState == 4 && this.status == 200) {
                 //alert(this.responseText);
 				//document.getElementById("txtHint").innerHTML = this.responseText;
-alert("function updateall Done") ;
+alert("function updateall done") ;
 	 }
         }
         xmlhttp.open("GET", "adminMWStuff.php?q="+str, true);
@@ -314,7 +314,7 @@ function loadDoc() {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
     // document.getElementById("demo").innerHTML = this.responseText;
-	alert("function loadDoc Done") ;
+	alert("function loadDoc done") ;
     }
   };
   xhttp.open("GET", "adminSqlJson.php", true);

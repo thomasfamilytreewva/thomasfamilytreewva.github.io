@@ -4,13 +4,13 @@
 <head>
 <script>
 function passwordHint(){
-	alert("123");
+	alert("Fa1...!");
 }
 function login(){
 //alert ("this is function login");
 password = document.getElementById("password").value;
 //alert (password);
-if (password=="123") {
+if (password=="Fa12345678!") {
 	//alert ("Match");
 	document.getElementById("password").value="";
 	//window.open ('myPhpFunctions.php','_self',false);
