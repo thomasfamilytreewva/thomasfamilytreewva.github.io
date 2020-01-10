@@ -1,4 +1,19 @@
-01 Jan 2019
+03 Jan 2020
+Good progress on automating myObj/pngFiles.
+After any changes to the sqlDb manually or thru CRUD the following must happen.
+1. From adminMenu.html I must run sqlJson which exports testtable into
+the $myObj variable, then saves the $myObj variable as jsonMyObj.txt file.
+2. I then run index.html which creates myObj from the jsonMyObj.txt file, 
+deletes the old local storage myObj and creates new myObj.
+3. Then the updated myObj variable is available for both searchfamilymember.html
+and whodat.html
+
+The problem I'm now having is that I have to run index.html with Google console
+(Function f12) open to get the myObj to update with the new data.
+Problem happens because index.html was opening the admin.php in a new window.
+Solution - Have index.html open admin.php is same window.
+
+01 Jan 2020
 localstorage index.html the old storage file must first be deleted.
 
 26 Dec 2019

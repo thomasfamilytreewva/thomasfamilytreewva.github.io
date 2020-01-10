@@ -8,6 +8,7 @@ $CrudOption='';
 $NodeUID='';
 $FirstName= $MiddleName= $MaidenName= $LastName= $NickName='';
 $DateOfBirth= $PlaceOfBirth= $DateOfDeath= $PlaceOfDeath='';
+$PlaceOfBirthCity= $PlaceOfBirthState= $PlaceOfDeathCity= $PlaceOfDeathState='';
 $Tel1= $Tel2= $Email='';
 $StreetAddress= $City= $State= $Comments='';
 
@@ -92,8 +93,17 @@ mysqli_select_db($conn,"id4184148_testdatabase");
 
 If ($CrudOption == "insert"){
           //sql here
-		  $sql = "INSERT INTO testtable (NodeUID, FirstName, LastName)
-VALUES ('".$NodeUID."', '".$FirstName."', '".$LastName."')";
+		  $sql = "INSERT INTO testtable (NodeUID, FirstName, MiddleName, MaidenName,
+		  LastName, NickName, DateOfBirth, PlaceOfBirthCity, PlaceOfBirthState,
+		  DateOfDeath, PlaceOfDeathCity, PlaceOfDeathState,
+		  Tel1, Email, City, State, Comments)
+VALUES ('".$NodeUID."', '".$FirstName."', '".$MiddleName."',
+'".$MaidenName."', '".$LastName."', '".$NickName."',
+'".$DateOfBirth."', '".$PlaceOfBirthCity."', '".$PlaceOfBirthState."',
+'".$DateOfDeath."', '".$PlaceOfDeathCity."', '".$PlaceOfDeathState."',
+'".$Tel1."', '".$Email."', '".$City."',
+'".$State."', '".$Comments."')";
+
 $result = mysqli_query($conn,$sql);
 echo ("This is end of SQL Insert");
 }elseIf ($CrudOption == "delete"){
@@ -176,28 +186,89 @@ echo ("This is end of SQL Update");
 
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="jquery-3.3.1.js"></script>
+<script src="myJsFunctions.js"></script>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+
 <script>
-
+var myTable = document.getElementById("myTable");
+var myObj = JSON.parse(localStorage["myObj"]);
+var rowIndex;
 </script>
-
-<script>
-</script>
-
-
-
-
-</head>
-
+  
+ </head>
 <body>
+
 
 <a href="index.html">Main Menu</a><br>
 <a href="adminMenu.php"> Admin Menu</a><br>
 
+Enter First Name or Nick Name:<br>
 
- <form action="searchowl.php" method="GET">
-        <input type="text" name="query" />
-        <input type="submit" value="Search" />
-    </form>
+  <input id="searchName" type="text"><br><br>
+  <button id="SearchButton" onclick="mySearch()">Search</button><br><br>
+  
+  <p id="demo"></p>
+  
+   <script>
+//document.getElementById("demo").innerHTML=myObj;
+</script>
+   <script>
+var input = document.getElementById("searchName");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("SearchButton").click();
+  }
+});
+
+</script> 
+  
+ <p id="clickForDetails">Click on family member's name for photo and details.</p>
+<table id="myTable">
+  <tr>
+    <th>NUID</th>
+    <th>First Name</th>
+    <th>Middle Name</th>
+	<th>Maiden Name</th>
+    <th>Last Name</th>
+    <th>Nick Name</th>
+  </tr>
+  </table>
+  
+  <script>
+	document.getElementById("myTable").style.visibility = "hidden";
+			document.getElementById("clickForDetails").style.visibility = "hidden";
+ </script>  
+
+  
+  <br>
+<div id='imageholder'>
+<p></p>
+</div>
 
 
 <h2>CRUD</h2>

@@ -1,0 +1,815 @@
+//07 Jan 2020
+
+
+var myTable = document.getElementById("myTable");
+var myObj = JSON.parse(localStorage["myObj"]);
+var rowIndex;
+var stateName;
+var distinctCityDataState;
+
+function allInfoDataTable(){
+	//Delete all existing tables 
+	var tables= document.getElementsByTagName('table');
+while (tables.length>0)
+    tables[0].parentNode.removeChild(tables[0]);
+	
+	//Create a HTML Table element.
+        var table = document.createElement("TABLE");
+		var x = table.setAttribute("id", "allInfoDataTable");
+         table.border = "1";
+		 
+		 		document.body.appendChild(table);
+ document.getElementById("allInfoDataTable").style.position = "static";
+
+		 
+        //Add the header row.
+        var row = table.insertRow(-1);
+          var headerCell = document.createElement("TH");
+            headerCell.innerHTML = "First Name";
+            row.appendChild(headerCell);
+			
+			 var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "Middle Name";
+            row.appendChild(headerCell)
+        
+		 var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "Maiden Name";
+            row.appendChild(headerCell)
+        
+		 var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "Last Name";
+            row.appendChild(headerCell)
+        
+		 var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "Nick Name";
+            row.appendChild(headerCell)
+        
+		 var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "Date Of Birth";
+            row.appendChild(headerCell)
+			
+			 var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "Place Of Birth City";
+            row.appendChild(headerCell)
+        
+		 var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "Place Of Birth State";
+            row.appendChild(headerCell)
+			
+			 var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "Date Of Death";
+            row.appendChild(headerCell)
+			
+			 var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "Place Of Death City";
+            row.appendChild(headerCell)
+        
+		 var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "Place Of Death State";
+            row.appendChild(headerCell)
+			
+			var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "Tel";
+            row.appendChild(headerCell)
+			
+			var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "Email";
+            row.appendChild(headerCell)
+        
+		var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "City";
+            row.appendChild(headerCell)
+			
+			var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "State";
+            row.appendChild(headerCell)
+			
+			var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "Comments";
+            row.appendChild(headerCell)
+     
+	 
+			for (i in myObj) {
+nuid=myObj[i].NodeUID;
+  fn = myObj[i].FirstName  ;
+   fn = fn.toUpperCase();
+    mn=myObj[i].MiddleName;
+ mn = mn.toUpperCase();
+  man=myObj[i].MaidenName;
+ man = man.toUpperCase();
+ ln=myObj[i].LastName;
+ ln = ln.toUpperCase();
+   nn=myObj[i].NickName;
+ nn = nn.toUpperCase();
+  fnn=myObj[i].FirstNickName;
+ fnn = fnn.toUpperCase();
+ dob=myObj[i].DateOfBirth;
+ //dob = dob.toUpperCase();
+  pobc=myObj[i].PlaceOfBirthCity;
+ //pobc = pobc.toUpperCase();
+ pobs=myObj[i].PlaceOfBirthState;
+ //pobs = pobs.toUpperCase();
+ dod=myObj[i].DateOfDeath;
+ podc=myObj[i].PlaceOfDeathCity;
+ //podc = podc.toUpperCase();
+ pods=myObj[i].PlaceOfDeathState;
+ //pods = pods.toUpperCase();
+  tel1 = myObj[i].Tel1
+   email = myObj[i].Email
+  city=myObj[i].City;
+ city = city.toUpperCase();
+  state=myObj[i].State;
+ state = state.toUpperCase();
+    comments=myObj[i].Comments;
+ 
+                   row = table.insertRow(-1);
+               var cell = row.insertCell(-1);
+                cell.innerHTML = fn;
+				
+				  var cell = row.insertCell(-1);
+                cell.innerHTML = mn;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = man;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = ln;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = nn;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = dob;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = pobc;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = pobs;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = dod;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = podc;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = pods;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = tel1;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = email;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = city;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = state;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = comments;
+            }
+        }
+			
+		
+    
+
+  function wholiveswhere(){
+	  //Delete all existing tables 
+	var tables= document.getElementsByTagName('table');
+while (tables.length>0)
+    tables[0].parentNode.removeChild(tables[0]);
+		  
+	//  alert ("This is function whoLivesWhere");
+	distinctStates(); //gets array of distinct states 
+	                            //then creates a table for each state
+	distinctCities(); //gets array of distinct states
+	                           //then adds city data to its parent state
+  }
+  
+    
+  function distinctCities(){
+	//gets array of distinct cities 
+	//then calls distinctTableCreate() which creates table for each state
+var array = myObj;
+	var unique = {};
+var distinct = [];
+    for( var i in array ){
+		if(array[i].City == ""){
+			//alert ("Blank City");
+		}else{
+		
+     if( typeof(unique[array[i].City]) == "undefined"){
+		 //alert(array[i].State);
+      distinct.push(array[i].City);
+	       }
+		}
+     unique[array[i].City] = 0;
+    }
+	distinct.sort(); 
+//var dC = document.getElementById("distinctCities");
+//dC.innerHTML = "" + distinct;
+
+for (var i in distinct) {
+	cityName= (distinct[i]);
+	distinctCityData();
+	
+}
+
+}
+
+function distinctCityData(){
+	cityName = (cityName.trim());
+	cityName = cityName.toUpperCase();
+	
+		//console.log (cityName);
+		 for (i in myObj) {
+nuid=myObj[i].NodeUID;
+  fn = myObj[i].FirstName  ;
+   fn = fn.toUpperCase();
+    mn=myObj[i].MiddleName;
+ mn = mn.toUpperCase();
+  man=myObj[i].MaidenName;
+ man = man.toUpperCase();
+ ln=myObj[i].LastName;
+ ln = ln.toUpperCase();
+   nn=myObj[i].NickName;
+ nn = nn.toUpperCase();
+  fnn=myObj[i].FirstNickName;
+ fnn = fnn.toUpperCase();
+  city=myObj[i].City;
+ city = city.toUpperCase();
+  state=myObj[i].State;
+ state = state.toUpperCase();
+ 
+ if (cityName == city){
+	 distinctCityDataState=state;
+	 console.log (city+distinctCityDataState+fn+nn+ln);
+	 //alert (stateName);
+	var x=document.getElementById("table"+distinctCityDataState);
+	//console.log(cityName +distinctCityDataState+fn+nn+ln);
+	
+	 row = x.insertRow(-1);
+                var cell = row.insertCell(-1);
+                cell.innerHTML = city;
+				var cell = row.insertCell(1);
+                cell.innerHTML = fn;
+				var cell = row.insertCell(2);
+                cell.innerHTML = nn;
+				var cell = row.insertCell(3);
+                cell.innerHTML = ln;
+           
+	
+	 
+ }
+		
+}
+}
+  
+  
+  function distinctStates(){
+	//gets array of distinct states 
+	//then calls distinctTableCreate() which creates table for each state
+var array = myObj;
+	var unique = {};
+var distinct = [];
+    for( var i in array ){
+		if(array[i].State == ""){
+			//alert ("Blank State");
+		}else{
+		
+     if( typeof(unique[array[i].State]) == "undefined"){
+		 //alert(array[i].State);
+      distinct.push(array[i].State);
+	       }
+		}
+     unique[array[i].State] = 0;
+    }
+	distinct.sort(); 
+//var dS = document.getElementById("distinctStates");
+//dS.innerHTML = "" + distinct;
+
+for (var i in distinct) {
+	stateName= (distinct[i]);
+	//alert (stateName);
+	distinctStateTableCreate();
+}
+
+}
+
+  
+  
+  function distinctStateTableCreate() {
+	     //alert(stateName);
+  var x = document.createElement("TABLE");
+ x.setAttribute("id", "table" + stateName);
+  var tableId = ("table" + stateName);
+  document.body.appendChild(x);
+    //Get the count of columns.
+        var columnCount = 1;
+ 
+        //Add the header row.
+        var row = x.insertRow(-1);
+                    var headerCell = document.createElement("TH");
+            headerCell.innerHTML = stateName;
+            row.appendChild(headerCell);
+        
+  
+    //Add the data rows.
+       // for (var i = 1; i < customers.length; i++) {
+       //     row = table.insertRow(-1);
+        //    for (var j = 0; j < columnCount; j++) {
+         //       var cell = row.insertCell(-1);
+       //         cell.innerHTML = customers[i][j];
+      //      }
+      //  }
+		
+		    row = x.insertRow(-1);
+                var cell = row.insertCell(-1);
+                cell.innerHTML = "CITY";
+				var cell = row.insertCell(1);
+                cell.innerHTML = "First Name";
+				var cell = row.insertCell(2);
+                cell.innerHTML = "Nick Name";
+				var cell = row.insertCell(3);
+                cell.innerHTML = "Last Name";
+            
+       document.body.appendChild(x);
+   document.getElementById(tableId).style.position = "static";
+   }
+
+  
+  
+  function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("myTable");
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[0];
+      y = rows[i + 1].getElementsByTagName("TD")[0];
+      //check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+
+
+
+function mySearch() {
+
+document.getElementById("imageholder").innerHTML= "";
+	
+
+  try{
+ var myDiv = document.getElementById("myDIV");
+myDiv.remove();
+ }catch{
+ // do nothing
+ }
+
+var x = document.getElementById("myTable").rows.length;
+var i=x
+while (i > 1) {
+ document.getElementById("myTable").deleteRow(1);
+  i=i-1;
+}
+
+searchName = document.getElementById("searchName").value
+searchName = searchName.toUpperCase();
+  
+for (i in myObj) {
+nuid=myObj[i].NodeUID;
+  fn = myObj[i].FirstName  ;
+   fn = fn.toUpperCase();
+    mn=myObj[i].MiddleName;
+ mn = mn.toUpperCase();
+  man=myObj[i].MaidenName;
+ man = man.toUpperCase();
+ ln=myObj[i].LastName;
+ ln = ln.toUpperCase();
+   nn=myObj[i].NickName;
+ nn = nn.toUpperCase();
+  fnn=myObj[i].FirstNickName;
+ fnn = fnn.toUpperCase();
+  city=myObj[i].City;
+ city = city.toUpperCase();
+  state=myObj[i].State;
+ state = state.toUpperCase();
+ 
+ 
+
+ if (fnn.includes(searchName)==true){
+ 
+  createTable();
+  document.getElementById("myTable").style.visibility = "visible";
+  document.getElementById("clickForDetails").style.visibility = "visible";
+   addClickTable();
+
+ }
+ 
+  }
+
+// var x = document.getElementById("myTable").rows.length;
+}
+ 
+ function createTable(){
+  var x = document.createElement("TBODY");
+  var y = document.createElement("TR");
+   var z1 = document.createElement("TD");
+ var z2 = document.createElement("TD");
+  var z3 = document.createElement("TD");
+   var z4 = document.createElement("TD");
+    var z5 = document.createElement("TD");
+	 var z6 = document.createElement("TD");
+  z1.innerHTML = (nuid);
+ z2.innerHTML = (fn);
+ z3.innerHTML = (mn);
+ z4.innerHTML = (man);
+ z5.innerHTML = (ln);
+ z6.innerHTML = (nn);
+  y.appendChild(z1);
+    y.appendChild(z2);
+	y.appendChild(z3);
+	y.appendChild(z4);
+	y.appendChild(z5);
+	y.appendChild(z6);
+  x.appendChild(y);
+  document.getElementById("myTable").appendChild(x);
+  
+   var para = document.createElement("p");
+var node = document.createTextNode("Click on family member's name for details.");
+para.appendChild(node);
+
+}
+ 
+ 
+ 
+  
+function addClick() {
+    var table = document.getElementById('myTable');
+    var cells = table.getElementsByTagName('td');
+
+    for (var i = 0; i < cells.length; i++) {
+        // Take each cell
+     var cell = cells[i];
+        // do something on onclick event for cell
+     cell.onclick = function () {
+            // Get the row id where the cell exists
+            var rowId = this.parentNode.rowIndex;
+alert(rowId);
+alert(document.getElementById("myTable").rows[1].cells[0].innerHTML);
+alert(document.getElementById("myTable").rows[rowId].cells[0].innerHTML);
+idvar=(document.getElementById("myTable").rows[rowId].cells[0].innerHTML);
+alert(idvar);
+}
+   }
+
+}
+
+
+
+ 
+  
+ 
+  function addClickTable(){
+   var table = document.getElementById('myTable');
+    var rows = table.getElementsByTagName('tr');
+
+    for (var i = 0; i < rows.length; i++) {
+        // Take each cell
+     var row = rows[i];
+        // do something on onclick event for cell
+     row.onclick = function () {
+	 // alert(idvar);
+ // alert(this);
+  
+   var myDiv = document.createElement("div");
+//myDiv.style.cssText = 'position:absolute;width:100%;height:100%;opacity:0.3;z-index:100;background:#000;';
+document.body.appendChild(myDiv);
+myDiv.id=("myDIV");
+
+            // Get the row id where the cell exists
+			rowIndex=(this.rowIndex);
+			if (rowIndex==0){
+			return;
+			}
+			//alert(rowIndex);
+			idvar = (this.cells[0].innerHTML);
+			showPhoto();
+			showFamilyMemberInfo();
+			 deleteRows();
+			document.getElementById("myTable").style.visibility = "hidden";
+			document.getElementById("clickForDetails").style.visibility = "hidden";
+   
+           				       }
+							   }
+							   }
+	
+
+
+
+function rowIndex(){
+ var table = document.getElementById("myTable");
+                for(var i = 0; i < table.rows.length; i++)   {
+                                 table.rows[i].onclick = function()
+                    {
+						
+						idvar = (this.cells[0].innerHTML);
+						       }
+							   
+                }
+}
+
+
+
+
+
+function showPhoto(){
+	var urlvar = "";
+	urlvar = ("images/" + idvar + ".png");
+	 var repImage = "<img src=' " + urlvar + " '>";
+	document.getElementById("imageholder").innerHTML= repImage;
+		}
+		
+		function deleteRows(){
+			var x = document.getElementById("myTable").rows.length;
+var i=x
+while (i > 1) {
+ document.getElementById("myTable").deleteRow(1);
+  i=i-1;
+}				 
+idvar = "";
+	 }
+
+  
+  
+  
+  function showFamilyMemberInfo(){
+  
+    for (i in myObj) {
+	nuid=(myObj[i].NodeUID);
+	if (myObj[i].NodeUID == idvar){
+		 nuid=myObj[i].NodeUID;
+  fn = myObj[i].FirstName  ;
+   //fn = fn.toUpperCase();
+    mn=myObj[i].MiddleName;
+ //mn = mn.toUpperCase();
+  man=myObj[i].MaidenName;
+ //man = man.toUpperCase();
+ ln=myObj[i].LastName;
+ //ln = ln.toUpperCase();
+   nn=myObj[i].NickName;
+ //nn = nn.toUpperCase();
+  fnn=myObj[i].FirstNickName;
+ //fnn = fnn.toUpperCase();
+ pobc=myObj[i].PlaceOfBirthCity;
+ //pobc = pobc.toUpperCase();
+ pobs=myObj[i].PlaceOfBirthState;
+ //pobs = pobs.toUpperCase();
+ 
+ dob=myObj[i].DateOfBirth;
+ //dob = dob.toUpperCase();
+ podc=myObj[i].PlaceOfDeathCity;
+ //podc = podc.toUpperCase();
+ pods=myObj[i].PlaceOfDeathState;
+ //pods = pods.toUpperCase();
+ 
+ dod=myObj[i].DateOfDeath;
+ //dod = dod.toUpperCase(); 
+ tel1=myObj[i].Tel1;
+ //tel1=tel1.toUpperCase();
+ email=myObj[i].Email;
+ //email=email.toUpperCase();
+ city=myObj[i].City;
+ //city=city.toUpperCase();
+ state=myObj[i].State;
+ //state=state.toUpperCase();
+ }
+	}
+	
+	var pfn = document.createElement("P");                 // Create a <p> element
+pfn.innerHTML = "First Name: " + fn;                // Insert text
+document.getElementById("myDIV").appendChild(pfn);     // Append <p> to <div> with id="myDIV"
+	
+		var pln = document.createElement("P");                 // Create a <p> element
+pln.innerHTML = "Last Name: " + ln;                // Insert text
+document.getElementById("myDIV").appendChild(pln);     // Append <p> to <div> with id="myDIV"
+	
+			var pnn = document.createElement("P");                 // Create a <p> element
+pnn.innerHTML = "Nick Name: " + nn;                // Insert text
+document.getElementById("myDIV").appendChild(pnn);     // Append <p> to <div> with id="myDIV"
+	
+			var ppobc = document.createElement("P");                 // Create a <p> element
+ppobc.innerHTML = "Place Of Birth City: " + pobc;                // Insert text
+document.getElementById("myDIV").appendChild(ppobc);     // Append <p> to <div> with id="myDIV"
+	
+	var ppobs = document.createElement("P");                 // Create a <p> element
+ppobs.innerHTML = "Place Of Birth State: " + pobs;                // Insert text
+document.getElementById("myDIV").appendChild(ppobs);     // Append <p> to <div> with id="myDIV"
+		
+			var pdob = document.createElement("P");                 // Create a <p> element
+pdob.innerHTML = "Date Of Birth: " + dob;                // Insert text
+document.getElementById("myDIV").appendChild(pdob);     // Append <p> to <div> with id="myDIV"
+	
+			var ppodc = document.createElement("P");                 // Create a <p> element
+ppodc.innerHTML = "Place Of Death City: " + podc;                // Insert text
+document.getElementById("myDIV").appendChild(ppodc);     // Append <p> to <div> with id="myDIV"
+	
+			var ppods = document.createElement("P");                 // Create a <p> element
+ppods.innerHTML = "Place Of Death State: " + pods;                // Insert text
+document.getElementById("myDIV").appendChild(ppods);     // Append <p> to <div> with id="myDIV"
+
+	var pdod = document.createElement("P");                 // Create a <p> element
+pdod.innerHTML = "Date Of Death: " + dod;                // Insert text
+document.getElementById("myDIV").appendChild(pdod);     // Append <p> to <div> with id="myDIV"
+
+			var ptel1 = document.createElement("P");                 // Create a <p> element
+ptel1.innerHTML = "Tel: " + tel1;                // Insert text
+document.getElementById("myDIV").appendChild(ptel1);     // Append <p> to <div> with id="myDIV"
+	
+				var pemail = document.createElement("P");                 // Create a <p> element
+pemail.innerHTML = "Email: " + email;                // Insert text
+document.getElementById("myDIV").appendChild(pemail);     // Append <p> to <div> with id="myDIV"
+  }
+  
+
+
+
+function oldestFamilyMember(){
+	var dobOldest=moment().startOf('day');
+	var given="";
+	var current="";
+	var fnOldest="";
+for (i in myObj) {
+nuid=myObj[i].NodeUID;
+  fn = myObj[i].FirstName  ;
+   fn = fn.toUpperCase();
+    mn=myObj[i].MiddleName;
+ mn = mn.toUpperCase();
+  man=myObj[i].MaidenName;
+ man = man.toUpperCase();
+ ln=myObj[i].LastName;
+ ln = ln.toUpperCase();
+   nn=myObj[i].NickName;
+ nn = nn.toUpperCase();
+  fnn=myObj[i].FirstNickName;
+ fnn = fnn.toUpperCase();
+ dob =myObj[i].DateOfBirth;
+ dod =myObj[i].DateOfDeath;
+ 
+  
+ if(dod=="0000-00-00"){
+ if(dob=="0000-00-00"){
+ }else{
+//console.log(fn + " " + ln +  " was born " + dob);
+
+//var DateOfBirth = ("2019-01-07");
+
+	//var given = moment(DateOfBirth);
+//var current = moment().startOf('day');
+given = moment(dob);
+current = moment().startOf('day');
+//Difference in number of days
+//console.log(moment.duration(given.diff(current)).asDays());
+dobDays=(moment.duration(given.diff(current)).asDays());
+
+given = moment(dobOldest);
+current = moment().startOf('day');
+dobOldestDays=(moment.duration(given.diff(current)).asDays());
+
+
+
+if(dobDays<=dobOldestDays){
+	console.log("dobDays " + dobDays + " dobOldestDays " + dobOldestDays);
+	dobOldestDays=dobDays;
+	dobOldest = dob;
+	fnOldest=fn;
+	lnOldest =ln;
+	console.log("The oldest living family member is " + fnOldest+  " " + lnOldest + ". Born " + dobOldest);
+	
+}
+
+ 
+ } 
+}
+}
+
+alert("The oldest living family member is " + fnOldest + " " + lnOldest + ". Born " + dobOldest);
+
+}
+  
+
+function moments() {
+var starts = moment('1830-02-15 12:53:12');
+var ends   = moment();
+
+var duration = moment.duration(ends.diff(starts));
+
+// with ###moment precise date range plugin###
+// it will tell you the difference in human terms
+
+var diff = moment.preciseDiff(starts, ends, true); 
+// example: { "years": 2, "months": 7, "days": 0, "hours": 6, "minutes": 29, "seconds": 17, "firstDateWasLater":  false }
+
+
+// or as string:
+var diffHuman = moment.preciseDiff(starts, ends);
+// example: 2 years 7 months 6 hours 29 minutes 17 seconds
+
+console.log(JSON.stringify(diff));
+console.log(diffHuman);
+}
+
+function dateDiffDays(){
+	//var given = moment("2021-01-07");
+	var DateOfBirth = ("2019-01-07");
+	var given = moment(DateOfBirth);
+var current = moment().startOf('day');
+
+//Difference in number of days
+//console.log(moment.duration(given.diff(current)).asDays());
+dDD=(moment.duration(given.diff(current)).asDays());
+alert(dDD);
+}
+
+function GenerateTable() {
+	
+	//Delete all existing tables 
+	var tables= document.getElementsByTagName('table');
+while (tables.length>0)
+    tables[0].parentNode.removeChild(tables[0]);
+	
+	
+	var i=4
+while (i > 1) {
+GenerateTable1();
+  i=i-1;
+}
+
+}
+
+ function GenerateTable1() {
+        //Build an array containing Customer records.
+        var customers = new Array();
+        customers.push(["Customer Id", "Name", "Country"]);
+        customers.push([1, "John Hammond", "United States"]);
+        customers.push([2, "Mudassar Khan", "India"]);
+        customers.push([3, "Suzanne Mathews", "France"]);
+        customers.push([4, "Robert Schidner", "Russia"]);
+ 
+        //Create a HTML Table element.
+        var table = document.createElement("TABLE");
+		var x = table.setAttribute("id", "tableGT");
+  var tableId = ("tableGT");
+        table.border = "1";
+ 
+         //Get the count of columns.
+        var columnCount = customers[0].length;
+ 
+        //Add the header row.
+        var row = table.insertRow(-1);
+        for (var i = 0; i < columnCount; i++) {
+            var headerCell = document.createElement("TH");
+            headerCell.innerHTML = customers[0][i];
+            row.appendChild(headerCell);
+        }
+ 
+        //Add the data rows.
+        for (var i = 1; i < customers.length; i++) {
+            row = table.insertRow(-1);
+            for (var j = 0; j < columnCount; j++) {
+                var cell = row.insertCell(-1);
+                cell.innerHTML = customers[i][j];
+            }
+        }
+		
+document.body.appendChild(table);
+ document.getElementById("tableGT").style.position = "static";
+      //  var dvTable = document.getElementById("dvTable");
+       // dvTable.innerHTML = "";
+      //  dvTable.appendChild(table);
+    }

@@ -1,0 +1,50 @@
+<!--15 jul 2018-->
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="jquery-3.3.1.js"></script>
+<script src="moment.js"></script>
+<script src="moment.min.js"></script>
+<script src="moment-precise-range.js"></script>
+<script src="factsfigures.js"></script>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+ </head>
+ 
+<body>
+
+<a href="index.html">Main Menu</a><br><br>
+
+<p id="distinctStates"></p>  
+<p id="distinctCities"></p>  
+ 
+ <button id="aIDT" onclick="allInfoDataTable()">All Info Data Table</button><br><br>
+  <button id="oldestFamilyMember" onclick="oldestFamilyMember()">Oldest Living Family Member?</button><br><br>
+  <button id="wlw" onclick="wholiveswhere()">Who Lives Where?</button>
+  
+ 
+  
+ </body>
+</html>
