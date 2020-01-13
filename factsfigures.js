@@ -6,6 +6,10 @@ var myObj = JSON.parse(localStorage["myObj"]);
 var rowIndex;
 var stateName;
 var distinctCityDataState;
+var countOfLiving=0;
+	  var countOfDead=0;
+	  var countOfLivingPlusDead=0;
+	
 
 function allInfoDataTable(){
 	//Delete all existing tables 
@@ -189,7 +193,9 @@ while (tables.length>0)
 	                           //then adds city data to its parent state
   }
   
-    
+  
+
+   
   function distinctCities(){
 	//gets array of distinct cities 
 	//then calls distinctTableCreate() which creates table for each state
@@ -223,10 +229,9 @@ for (var i in distinct) {
 function distinctCityData(){
 	cityName = (cityName.trim());
 	cityName = cityName.toUpperCase();
-	
-		//console.log (cityName);
+			//console.log (cityName);
 		 for (i in myObj) {
-nuid=myObj[i].NodeUID;
+	nuid=myObj[i].NodeUID;
   fn = myObj[i].FirstName  ;
    fn = fn.toUpperCase();
     mn=myObj[i].MiddleName;
@@ -242,9 +247,12 @@ nuid=myObj[i].NodeUID;
   city=myObj[i].City;
  city = city.toUpperCase();
   state=myObj[i].State;
- state = state.toUpperCase();
+ state = state.toUpperCase()
+ podc=myObj[i].PlaceOfDeathCity;
  
+
  if (cityName == city){
+	  if (podc==""){
 	 distinctCityDataState=state;
 	 console.log (city+distinctCityDataState+fn+nn+ln);
 	 //alert (stateName);
@@ -260,11 +268,8 @@ nuid=myObj[i].NodeUID;
                 cell.innerHTML = nn;
 				var cell = row.insertCell(3);
                 cell.innerHTML = ln;
-           
-	
-	 
  }
-		
+ }		
 }
 }
   
@@ -659,7 +664,7 @@ document.getElementById("myDIV").appendChild(pemail);     // Append <p> to <div>
 
 
 
-function oldestFamilyMember(){
+function oldestLivingFamilyMember(){
 	var dobOldest=moment().startOf('day');
 	var given="";
 	var current="";
@@ -813,3 +818,197 @@ document.body.appendChild(table);
        // dvTable.innerHTML = "";
       //  dvTable.appendChild(table);
     }
+	
+	
+	   
+function population(){
+	
+	  //Delete all existing tables 
+	var tables= document.getElementsByTagName('table');
+while (tables.length>0)
+    tables[0].parentNode.removeChild(tables[0]);
+
+//Create Population Table Headers
+ var x = document.createElement("TABLE");
+ x.setAttribute("id", "population");
+  var tableIdpop = ("population");
+  document.body.appendChild(x);
+    //Get the count of columns.
+     //   var columnCount = 4;
+ 
+        //Add the header row.
+        var row = x.insertRow(-1);
+            			var headerCell = document.createElement("TH");
+            headerCell.innerHTML = "POPULATION OF THOMAS PEOPLE";
+            row.appendChild(headerCell);
+			headerCell.colSpan = 4;
+     	    //position table here
+         document.getElementById(tableIdpop).style.position = "static";
+ 
+
+		  
+	//  alert ("This is function whoLivesWhere");
+	populationStates(); //gets array of distinct states 
+	                            //then creates a table for each state
+	populationCities(); //gets array of distinct states
+	                           //then adds city data to its parent state
+  }
+  
+  function populationStates(){
+	//gets array of distinct states 
+	//then calls distinctTableCreate() which creates table for each state
+var array = myObj;
+	var unique = {};
+var distinct = [];
+    for( var i in array ){
+		if(array[i].State == ""){
+			//alert ("Blank State");
+		}else{
+		
+     if( typeof(unique[array[i].State]) == "undefined"){
+		 //alert(array[i].State);
+      distinct.push(array[i].State);
+	       }
+		}
+     unique[array[i].State] = 0;
+    }
+	distinct.sort(); 
+//var dS = document.getElementById("distinctStates");
+//dS.innerHTML = "" + distinct;
+
+for (var i in distinct) {
+	stateName= (distinct[i]);
+	//alert (stateName);
+	populationStateTableCreate();
+}
+
+}
+
+  
+  
+  function populationStateTableCreate() {
+	  
+	     //alert(stateName);
+  var x = document.createElement("TABLE");
+ x.setAttribute("id", "table" + stateName);
+  var tableStateName = ("table" + stateName);
+  document.body.appendChild(x);
+    //Get the count of columns.
+        var columnCount = 1;
+ 
+        //Add the header row.
+        var row = x.insertRow(-1);
+                    var headerCell = document.createElement("TH");
+            headerCell.innerHTML = stateName;
+            row.appendChild(headerCell);
+			
+			var cell = row.insertCell(1);
+                cell.innerHTML = "LIVING";
+				var cell = row.insertCell(2);
+                cell.innerHTML = "DEAD";
+				var cell = row.insertCell(3);
+                cell.innerHTML = "TOTAL";
+            
+            
+       document.body.appendChild(x);
+   document.getElementById(tableStateName).style.position = "static";
+   }
+
+  
+ function populationCities(){
+	//gets array of distinct cities 
+	//then calls distinctTableCreate() which creates table for each state
+var array = myObj;
+	var unique = {};
+var distinct = [];
+    for( var i in array ){
+		if(array[i].City == ""){
+			//alert ("Blank City");
+		}else{
+		
+     if( typeof(unique[array[i].City]) == "undefined"){
+		 //alert(array[i].State);
+      distinct.push(array[i].City);
+	       }
+		}
+     unique[array[i].City] = 0;
+    }
+	distinct.sort(); 
+//var dC = document.getElementById("distinctCities");
+//dC.innerHTML = "" + distinct;
+
+for (var i in distinct) {
+	cityName= (distinct[i]);
+	populationCityData();
+		var x=document.getElementById("table"+distinctCityDataState);
+ row = x.insertRow(-1);
+               var cell = row.insertCell(-1);
+               cell.innerHTML = cityName;
+			   var cell = row.insertCell(1);
+             cell.innerHTML = countOfLiving;
+				var cell = row.insertCell(2);
+               cell.innerHTML = countOfDead;
+			var cell = row.insertCell(3);
+              cell.innerHTML = countOfLivingPlusDead;
+}
+}
+
+function populationCityData(){
+	  countOfLiving=0;
+	  countOfDead=0;
+	  countOfLivingPlusDead=0;
+
+	cityName = (cityName.trim());
+	cityName = cityName.toUpperCase();
+			//console.log (cityName);
+		 for (i in myObj) {
+	nuid=myObj[i].NodeUID;
+  fn = myObj[i].FirstName  ;
+   fn = fn.toUpperCase();
+    mn=myObj[i].MiddleName;
+ mn = mn.toUpperCase();
+  man=myObj[i].MaidenName;
+ man = man.toUpperCase();
+ ln=myObj[i].LastName;
+ ln = ln.toUpperCase();
+   nn=myObj[i].NickName;
+ nn = nn.toUpperCase();
+  fnn=myObj[i].FirstNickName;
+ fnn = fnn.toUpperCase();
+  city=myObj[i].City;
+ city = city.toUpperCase();
+  state=myObj[i].State;
+ state = state.toUpperCase()
+ podc=myObj[i].PlaceOfDeathCity;
+ 
+
+ if (cityName == city){
+	  if (podc==""){
+		  countOfLiving = countOfLiving + 1
+	 distinctCityDataState=state;
+	 console.log (city+distinctCityDataState+fn+nn+ln);
+	
+	
+//	var x=document.getElementById("table"+distinctCityDataState);
+ //row = x.insertRow(-1);
+  //              var cell = row.insertCell(-1);
+ //               cell.innerHTML = city;
+//				var cell = row.insertCell(1);
+   //             cell.innerHTML = "Total Living";
+//				var cell = row.insertCell(2);
+ //               cell.innerHTML = "Total Dead";
+//				var cell = row.insertCell(3);
+  //              cell.innerHTML = "Total L+D";
+
+	
+ }	else{
+	 countOfDead = countOfDead + 1;
+ }	
+}
+
+countOfLivingPlusDead = countOfLiving+ countOfDead;
+
+ }
+
+}
+ 

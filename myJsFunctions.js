@@ -460,13 +460,4 @@ pemail.innerHTML = "Email: " + email;                // Insert text
 document.getElementById("myDIV").appendChild(pemail);     // Append <p> to <div> with id="myDIV"
   }
   
-  
-  function wholiveswhere(){
-	  alert ("This is function whoLivesWhere");
-  }
-  
-  function testzzz(){
-	  alert ("This is function test");
-  }
-
 
