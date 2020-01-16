@@ -19,18 +19,96 @@ var mwChildsName = "";
 var mwChildsNamePlus = "";
 var displayAncestors = "";
 var arrayJsTreeData;
+var searchFamilyTreeYesNo = "No";
+var searchName="";
+var myObjNuid="";
 
 
-
-	
-
-
+function searchFamilyTree(){
+      }
  
 //var mwnumofchildren
 //currNode = "";
 function initialize() { 
+
+document.getElementById("searchName").addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("searchButton").click();
+  }
+});
+
+ 
+
+document.getElementById("searchButton").addEventListener('click', function (event) {
+	searchName = document.getElementById("searchName").value
+searchName = searchName.toUpperCase();
+if (searchName==""){
+	alert("You must enter a First Name or Nick Name to use Search");
+	return;
+}
+
+ for (var i = 0; i < nodes.length; i++) {
+	 nodes[i].setbgColor("green");
+nodes[i].setColor("black"); 
+ }
+
+var myObj = JSON.parse(localStorage["myObj"]);
+	for (i in myObj) {
+//nuid=myObj[i].NodeUID;
+myObjNuid=myObj[i].NodeUID;
+  fn = myObj[i].FirstName  ;
+   fn = fn.toUpperCase();
+    mn=myObj[i].MiddleName;
+ mn = mn.toUpperCase();
+  man=myObj[i].MaidenName;
+ man = man.toUpperCase();
+ ln=myObj[i].LastName;
+ ln = ln.toUpperCase();
+   nn=myObj[i].NickName;
+ nn = nn.toUpperCase();
+  fnn=myObj[i].FirstNickName;
+ fnn = fnn.toUpperCase();
+
+ if (fnn.includes(searchName)==true){
 		
-	
+		for (var i = 0; i < nodes.length; i++) {
+	 nuid = nodes[i].uid;
+if (myObjNuid==nuid){
+	alert(myObjNuid + " " + fn + " " + nuid + " " + nodes[i].text);
+	nodes[i].setbgColor("red");
+	//alert(nodes[i].xPos + " " +  nodes[i].yPos);
+	//window.scrollTo(nodes[i].xPos/2, nodes[i].yPos/2);
+window.scrollTo(nodes[i].xPos, nodes[i].yPos);
+// TREE.draw(context, tree);
+var nodePosx = (nodes[i].xPos);
+var nodePosy = (nodes[i].yPos);
+
+
+var screenHeight=screen.height;
+var screenWidth=screen.width;
+
+screenHeight = screenHeight/-3;
+screenWidth = screenWidth/-4;
+
+//alert ("sH " + screenHeight + " sW " + screenWidth);
+
+//window.scrollBy(0, -200); // Scroll up
+//window.scrollBy(-500, 0); // Scroll left
+
+window.scrollBy(0, screenHeight);
+window.scrollBy(screenWidth, 0);
+
+
+
+} 
+ }
+ }
+  }
+
+   TREE.draw(context, tree);       
+});
+			
     var canvas = document.getElementById("canvas"),
         context = canvas.getContext("2d"),
 		
@@ -44,6 +122,12 @@ function initialize() {
         zoom_out = document.getElementById("zoom_out");
 
     canvas.addEventListener("click", function (event) {
+		 for (var i = 0; i < nodes.length; i++) {
+	 nodes[i].setbgColor("green");
+nodes[i].setColor("black"); 
+ }
+
+		
         var x = event.pageX - canvas.offsetLeft,
             y = event.pageY - canvas.offsetTop;
 			
@@ -53,8 +137,7 @@ function initialize() {
                 currNode.selected(false);
                 nodes[i].selected(true);
                 currNode = nodes[i];
-				
-				
+								
 				TREE.clear(context);
                 TREE.draw(context, tree);
 				curruid = currNode.uid
@@ -477,7 +560,7 @@ function mwfunction(){
 	
 	
 	
-	//Start if previous member has children then sets background to white
+	//Start if previous member has children then sets background to green
 	if (mwpreChildrenYesNo == "Yes") {
 		//console.log = "ok";
 		var i = 0;
