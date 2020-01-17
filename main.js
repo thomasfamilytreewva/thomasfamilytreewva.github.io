@@ -24,6 +24,7 @@ var searchName="";
 var myObjNuid="";
 
 
+
 function searchFamilyTree(){
       }
  
@@ -46,8 +47,32 @@ searchName = searchName.toUpperCase();
 if (searchName==""){
 	alert("You must enter a First Name or Nick Name to use Search");
 	return;
-}
+} 
 
+//this block checks to see if the is more than one family member
+ //that matches searchName
+ var countersearchName = 0;
+var myObj = JSON.parse(localStorage["myObj"]);
+	for (i in myObj) {
+		fnn=myObj[i].FirstNickName;
+ fnn = fnn.toUpperCase();
+
+  if (fnn.includes(searchName)==true){
+	(countersearchName = countersearchName + 1);
+	}
+	}
+	
+	if (countersearchName > 1){
+		alert("There are multiple matches for your search " + searchName);
+	}
+	if (countersearchName==0){
+		alert("No familymember matched your search " + searchName);
+	}
+	
+	
+ //Code continues here after determing only one family member
+ //matches searchName or user has selected the one family member
+ //if there more than one match
  for (var i = 0; i < nodes.length; i++) {
 	 nodes[i].setbgColor("green");
 nodes[i].setColor("black"); 
@@ -70,7 +95,10 @@ myObjNuid=myObj[i].NodeUID;
   fnn=myObj[i].FirstNickName;
  fnn = fnn.toUpperCase();
 
- if (fnn.includes(searchName)==true){
+ 
+  if (fnn.includes(searchName)==true){
+		
+		
 		
 		for (var i = 0; i < nodes.length; i++) {
 	 nuid = nodes[i].uid;
