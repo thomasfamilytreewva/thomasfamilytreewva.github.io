@@ -1,5 +1,5 @@
 //comment
-//15 jul 2019
+//11 jan 2019
 var maintree;
 var mwcurrNode;
 var mwcurrNodei;
@@ -22,126 +22,21 @@ var arrayJsTreeData;
 var searchFamilyTreeYesNo = "No";
 var searchName="";
 var myObjNuid="";
+var myObj = "";
+var canvas = "";
+var context = "";
+var tree = "";
+var nodes = "";
+var table = "";
+var nuidtable="";
 
-
-
-function searchFamilyTree(){
-      }
- 
-//var mwnumofchildren
-//currNode = "";
+//initialize starts here
 function initialize() { 
-
-document.getElementById("searchName").addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-   event.preventDefault();
-   document.getElementById("searchButton").click();
-  }
-});
-
- 
-
-document.getElementById("searchButton").addEventListener('click', function (event) {
-	searchName = document.getElementById("searchName").value
-searchName = searchName.toUpperCase();
-if (searchName==""){
-	alert("You must enter a First Name or Nick Name to use Search");
-	return;
-} 
-
-//this block checks to see if the is more than one family member
- //that matches searchName
- var countersearchName = 0;
-var myObj = JSON.parse(localStorage["myObj"]);
-	for (i in myObj) {
-		fnn=myObj[i].FirstNickName;
- fnn = fnn.toUpperCase();
-
-  if (fnn.includes(searchName)==true){
-	(countersearchName = countersearchName + 1);
-	}
-	}
-	
-	if (countersearchName > 1){
-		alert("There are multiple matches for your search " + searchName);
-	}
-	if (countersearchName==0){
-		alert("No familymember matched your search " + searchName);
-	}
-	
-	
- //Code continues here after determing only one family member
- //matches searchName or user has selected the one family member
- //if there more than one match
- for (var i = 0; i < nodes.length; i++) {
-	 nodes[i].setbgColor("green");
-nodes[i].setColor("black"); 
- }
-
-var myObj = JSON.parse(localStorage["myObj"]);
-	for (i in myObj) {
-//nuid=myObj[i].NodeUID;
-myObjNuid=myObj[i].NodeUID;
-  fn = myObj[i].FirstName  ;
-   fn = fn.toUpperCase();
-    mn=myObj[i].MiddleName;
- mn = mn.toUpperCase();
-  man=myObj[i].MaidenName;
- man = man.toUpperCase();
- ln=myObj[i].LastName;
- ln = ln.toUpperCase();
-   nn=myObj[i].NickName;
- nn = nn.toUpperCase();
-  fnn=myObj[i].FirstNickName;
- fnn = fnn.toUpperCase();
-
- 
-  if (fnn.includes(searchName)==true){
 		
-		
-		
-		for (var i = 0; i < nodes.length; i++) {
-	 nuid = nodes[i].uid;
-if (myObjNuid==nuid){
-	alert(myObjNuid + " " + fn + " " + nuid + " " + nodes[i].text);
-	nodes[i].setbgColor("red");
-	//alert(nodes[i].xPos + " " +  nodes[i].yPos);
-	//window.scrollTo(nodes[i].xPos/2, nodes[i].yPos/2);
-window.scrollTo(nodes[i].xPos, nodes[i].yPos);
-// TREE.draw(context, tree);
-var nodePosx = (nodes[i].xPos);
-var nodePosy = (nodes[i].yPos);
-
-
-var screenHeight=screen.height;
-var screenWidth=screen.width;
-
-screenHeight = screenHeight/-3;
-screenWidth = screenWidth/-4;
-
-//alert ("sH " + screenHeight + " sW " + screenWidth);
-
-//window.scrollBy(0, -200); // Scroll up
-//window.scrollBy(-500, 0); // Scroll left
-
-window.scrollBy(0, screenHeight);
-window.scrollBy(screenWidth, 0);
-
-
-
-} 
- }
- }
-  }
-
-   TREE.draw(context, tree);       
-});
-			
-    var canvas = document.getElementById("canvas"),
+	
+    canvas = document.getElementById("canvas"),
         context = canvas.getContext("2d"),
-		
-	
-        tree = TREE.create("Chaney"),
+		tree = TREE.create("Chaney"),
         nodes = TREE.getNodeList(tree),
         currNode = tree,
         add_child_button = document.getElementById("add_child"),
@@ -150,12 +45,6 @@ window.scrollBy(screenWidth, 0);
         zoom_out = document.getElementById("zoom_out");
 
     canvas.addEventListener("click", function (event) {
-		 for (var i = 0; i < nodes.length; i++) {
-	 nodes[i].setbgColor("green");
-nodes[i].setColor("black"); 
- }
-
-		
         var x = event.pageX - canvas.offsetLeft,
             y = event.pageY - canvas.offsetTop;
 			
@@ -165,7 +54,8 @@ nodes[i].setColor("black");
                 currNode.selected(false);
                 nodes[i].selected(true);
                 currNode = nodes[i];
-								
+				
+				
 				TREE.clear(context);
                 TREE.draw(context, tree);
 				curruid = currNode.uid
@@ -179,7 +69,7 @@ nodes[i].setColor("black");
 				mwnodes = nodes;
 	
  
-	//getIdAndName();
+	getIdAndName();
 	//mwTreeData();
 	  descendants();
 				mwfunction();
@@ -252,8 +142,302 @@ nodes[i].setColor("black");
     window.scrollTo(3300, 0);
 	}
 	
+
+
+	 
+//onClick listener for searchButton starts here
+
+document.getElementById("searchName").addEventListener("keyup", function(event) {
+		  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("searchButton").click();
+  }
+});
+
+document.getElementById("searchButton").addEventListener('click', function (event) {
+	
+		searchName = document.getElementById("searchName").value
+searchName = searchName.toUpperCase();
+if (searchName==""){
+	alert("You must enter a First Name or Nick Name to use Search");
+	return;
+} 
+	
+//Delete all existing tables 
+	tables= document.getElementsByTagName('table');
+while (tables.length>0)
+    tables[0].parentNode.removeChild(tables[0]);
+
+//this block checks to see if the is more than one family member
+ //that matches searchName
+ var countersearchName = 0;
+//var myObj = JSON.parse(localStorage["myObj"]);
+myObj = JSON.parse(localStorage["myObj"]);
+	for (i in myObj) {
+		myObj = JSON.parse(localStorage["myObj"]);
+		fnn=myObj[i].FirstNickName;
+ fnn = fnn.toUpperCase();
+nuid=myObj[i].NodeUID;
+ 
+ if (nuid<1000){
+  if (fnn.includes(searchName)==true){
+	(countersearchName = countersearchName + 1);
+	}
+	}
+	}
+	
+	if (countersearchName==0){
+		alert("No familymember matched your search " + searchName);
+	}
+	
+	
+	//if searchName only has one match starts here
+	 //Code continues here after determing only one family member
+ //matches searchName or user has selected the one family member
+ //if there more than one match
+ if (countersearchName==1){
+		alert("Your search returned one match for " + searchName);
+	
+	
+ for (var i = 0; i < nodes.length; i++) {
+	 nodes[i].setbgColor("green");
+nodes[i].setColor("black"); 
+ }
+
+//var myObj = JSON.parse(localStorage["myObj"]);
+myObj = JSON.parse(localStorage["myObj"]);
+	for (i in myObj) {
+//nuid=myObj[i].NodeUID;
+myObjNuid=myObj[i].NodeUID;
+  fn = myObj[i].FirstName  ;
+   fn = fn.toUpperCase();
+    mn=myObj[i].MiddleName;
+ mn = mn.toUpperCase();
+  man=myObj[i].MaidenName;
+ man = man.toUpperCase();
+ ln=myObj[i].LastName;
+ ln = ln.toUpperCase();
+   nn=myObj[i].NickName;
+ nn = nn.toUpperCase();
+  fnn=myObj[i].FirstNickName;
+ fnn = fnn.toUpperCase();
+ city=myObj[i].City;
+ city = city.toUpperCase();
+  state=myObj[i].State;
+ state = state.toUpperCase();
+ 
+  if (fnn.includes(searchName)==true){
+			for (var i = 0; i < nodes.length; i++) {
+	 nuid = nodes[i].uid;
+if (myObjNuid==nuid){
+	//alert(myObjNuid + " " + fnn + " " + ln + " " + city + " " + state);
+		alert(fnn + " " + ln + " " + city + " " + state);
+	nodes[i].setbgColor("red");
+	//alert(nodes[i].xPos + " " +  nodes[i].yPos);
+	//window.scrollTo(nodes[i].xPos/2, nodes[i].yPos/2);
+window.scrollTo(nodes[i].xPos, nodes[i].yPos);
+// TREE.draw(context, tree);
+var nodePosx = (nodes[i].xPos);
+var nodePosy = (nodes[i].yPos);
+
+var screenHeight=screen.height;
+var screenWidth=screen.width;
+
+screenHeight = screenHeight/-3;
+screenWidth = screenWidth/-4;
+
+window.scrollBy(0, screenHeight);
+window.scrollBy(screenWidth, 0);
+
+} 
+ }
+ }
+  }
+   TREE.draw(context, tree);  
+ }   
+	//if searchName only has one match ends here
+	
+	
+//if searchName has more than one match starts here
+//Table is created to hold data of names that match searchName
+//Then a clickListener is added to that table
+	if (countersearchName > 1){
+		alert("There are multiple matches for your search " + searchName);
+		 window.scrollTo(-0,-0);
+	//Create a HTML Table element.
+        var table = document.createElement("TABLE");
+		var x = table.setAttribute("id", "mySearchFamilyTreeTable");
+         table.border = "1";
+		 
+		 		document.body.appendChild(table);
+ document.getElementById("mySearchFamilyTreeTable").style.position = "fixed";
+document.getElementById("mySearchFamilyTreeTable").style.top = "100px";
+document.getElementById("mySearchFamilyTreeTable").style.left = "0px";
+
+ //Add the header row.
+        var row = table.insertRow(-1);
+		
+		 var headerCell = document.createElement("TH");
+            headerCell.innerHTML = "NUID";
+            row.appendChild(headerCell);
+		
+		
+          var headerCell = document.createElement("TH");
+            headerCell.innerHTML = "First Name";
+            row.appendChild(headerCell);
+			
+		//		 var headerCell = document.createElement("TH");
+	//		headerCell.innerHTML = "Maiden Name";
+      //      row.appendChild(headerCell)
+        
+		 var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "Last Name";
+            row.appendChild(headerCell)
+        
+		 var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "Nick Name";
+            row.appendChild(headerCell)
+		
+ var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "City";
+            row.appendChild(headerCell)
+			
+			 var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "State";
+            row.appendChild(headerCell)
+		
+			searchName = document.getElementById("searchName").value
+searchName = searchName.toUpperCase();
+  
+//add td table data
+			for (i in myObj) {
+nuid=myObj[i].NodeUID;
+  fn = myObj[i].FirstName  ;
+   fn = fn.toUpperCase();
+    mn=myObj[i].MiddleName;
+ mn = mn.toUpperCase();
+  man=myObj[i].MaidenName;
+ man = man.toUpperCase();
+ ln=myObj[i].LastName;
+ ln = ln.toUpperCase();
+   nn=myObj[i].NickName;
+ nn = nn.toUpperCase();
+  fnn=myObj[i].FirstNickName;
+ fnn = fnn.toUpperCase();
+ dob=myObj[i].DateOfBirth;
+ //dob = dob.toUpperCase();
+  pobc=myObj[i].PlaceOfBirthCity;
+ //pobc = pobc.toUpperCase();
+ pobs=myObj[i].PlaceOfBirthState;
+ //pobs = pobs.toUpperCase();
+ dod=myObj[i].DateOfDeath;
+ podc=myObj[i].PlaceOfDeathCity;
+ //podc = podc.toUpperCase();
+ pods=myObj[i].PlaceOfDeathState;
+ //pods = pods.toUpperCase();
+  tel1 = myObj[i].Tel1
+   email = myObj[i].Email
+  city=myObj[i].City;
+ city = city.toUpperCase();
+  state=myObj[i].State;
+ state = state.toUpperCase();
+    comments=myObj[i].Comments;
+ 
+ if (fnn.includes(searchName)==true){
+                    row = table.insertRow(-1);
+					
+					  var cell = row.insertCell(-1);
+                cell.innerHTML = nuid;
+			
+			var cell = row.insertCell(-1);
+                cell.innerHTML = fn;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = ln;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = nn;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = city;
+				
+				var cell = row.insertCell(-1);
+                cell.innerHTML = state;
+   				 }
+				 addClickTable();
+				 
+									}
+}
+
+
+function addClickTable(){
+   var table = document.getElementById('mySearchFamilyTreeTable');
+    var rows = table.getElementsByTagName('tr');
+
+    for (var i = 0; i < rows.length; i++) {
+        // Take each cell
+     var row = rows[i];
+        // do something on onclick event for cell
+     row.onclick = function () {
+	            // Get the row id where the cell exists
+			rowIndex=(this.rowIndex);
+			if (rowIndex==0){
+			return;
+			}
+						nuidtable = (this.cells[0].innerHTML);
+						fn = (this.cells[1].innerHTML);
+						ln = (this.cells[2].innerHTML);
+						nn = (this.cells[3].innerHTML);
+						city = (this.cells[4].innerHTML);
+						state = (this.cells[5].innerHTML);
+					//	alert(nuidtable + " " + fn + " " + ln + " " + nn + " " + city + " " + state);
+						mySearchFamilyTreeTable1();
+					       }
+							   }
+							   }
+	
+//This function is called after user clicks on the 
+//family member in the searchFamilyMemberTable 
+function mySearchFamilyTreeTable1(){
+//Delete all existing tables 
+	tables= document.getElementsByTagName('table');
+while (tables.length>0)
+    tables[0].parentNode.removeChild(tables[0]);
+
+
+	alert(nuidtable + " " + fn + " " + ln + " " + nn + " " + city + " " + state);
+			
+			for (var i = 0; i < nodes.length; i++) {
+				 nodes[i].setbgColor("green");
+nodes[i].setColor("black"); 
+	 nuid = nodes[i].uid;
+if (nuidtable==nuid){
+		//alert(fnn + " " + ln + " " + city + " " + state);
+	nodes[i].setbgColor("red");
+	
+window.scrollTo(nodes[i].xPos, nodes[i].yPos);
+TREE.draw(context, tree);
+var nodePosx = (nodes[i].xPos);
+var nodePosy = (nodes[i].yPos);
+
+var screenHeight=screen.height;
+var screenWidth=screen.width;
+
+screenHeight = screenHeight/-3;
+screenWidth = screenWidth/-4;
+
+window.scrollBy(0, screenHeight);
+window.scrollBy(screenWidth, 0);
+
+} 
+ }
 	
 }
+});
+//onClick listener for searchButton ends here
+
+}
+//initialize ends here
 
 function updatePage(tree) {
 	mwfunction();
@@ -269,8 +453,6 @@ function updatePage(tree) {
 	
 	
 }
-
-
 
 
 function populateDummyData(tree) {
@@ -588,7 +770,7 @@ function mwfunction(){
 	
 	
 	
-	//Start if previous member has children then sets background to green
+	//Start if previous member has children then sets background to white
 	if (mwpreChildrenYesNo == "Yes") {
 		//console.log = "ok";
 		var i = 0;
@@ -661,16 +843,11 @@ mwChildsNamePlus = "";
 function displayFamilyMemberInfoMW(){
 	if (mwcurrNode.text == "Chaney"){
 		alert (displayFamilyMemberInfoMWMessage + "\n \n" + descendantsDisplay);
-		//setTimeout(function(){alert (displayFamilyMemberInfoMWMessage + "\n \n" + descendantsDisplay);},100);
 displayFamilyMemberInfoMWMessage = "";
 displayAncestors = "";
 descendantsDisplay = "";
 	}else{
-
-//This Ori Alert worked but would fire before background color changed
-//alert (displayAncestors  + "\n" + displayFamilyMemberInfoMWMessage + "\n" +  descendantsDisplay);
-//This Timeout was reommended --- https://stackoverflow.com/questions/41936043/javascript-alert-supersedes-preceding-code
-setTimeout(function() {alert(displayAncestors  + "\n" + displayFamilyMemberInfoMWMessage + "\n" +  descendantsDisplay);},200);
+alert (displayAncestors  + "\n" + displayFamilyMemberInfoMWMessage + "\n" +  descendantsDisplay);
 //displayFamilyMemberInfoMWMessage = "";
 //displayAncestors = "";
 }
@@ -719,51 +896,8 @@ results += "<tr><td colspan=1></td></tr>";
 results += "<table><br /> <br />";
 
  var div = document.getElementById("associatedAssets");
-    div.innerHTML = results;    
+  //  div.innerHTML = results;    
 			}      
-
-
-		
-
-
-function getIdAndNameORI(){
-	
-		var idNameArray, text, arrayLen, i;
-idNameArray = [];
-arrayLen = idNameArray.length;
-arrayLen = idNameArray.length;
-	
-//displays ID and Name of all members on Family Tree
- var results = ""; 
-				var stridname1 = ("");
-				for (var i = 0; i < mwnodes.length; i++) {
-					var nodeidname = (i);
-					var ididname = (mwnodes[i].uid);
-					var nameidname = (mwnodes[i].text);
-					var stridname = ("ID " + ididname + "   Node Number " + nodeidname + "    Name " + nameidname + "\n");
-							
-					
-					stridname1 = (stridname1 + "\n" + stridname);
-					console.log (stridname1);
-					idNameArray[idNameArray.length] = stridname;
-								
-					}
-				
-				    results = "<table>";
-					//for (var i=0; i<idNameArray.length; i=i+2) { //###NOTICE THE CHANGE FROM i++ TO     i=i+2               
-                    for (var i=0; i<idNameArray.length; i++) {
-    results += "<tr><td>" + idNameArray[i] + "</td>";  
-   // results += "<td>" + idNameArray[i+1] + "</td></tr>";  
-}
-
-results += "<tr><td colspan=1></td></tr>";
-results += "<table><br /> <br />";
-
- var div = document.getElementById("associatedAssets");
-    div.innerHTML = results;    
-			}      
-
-
 
 
 function ancestors(){
@@ -951,50 +1085,3 @@ for (var igc = 0; igc < mwcurrNode.children[ic].children.length; igc++) {
 	
 
 	
-/*	This for block is not computing Totals correctly			
-					for (var igc = 0; igc < mwcurrNode.children[ic].children.length; igc++) {
-					gcUid = mwcurrNode.children[ic].children[igc].uid;
-					gcName = mwcurrNode.children[ic].children[igc].text;
-					numberOfGGC = mwcurrNode.children[ic].children.length;
-					numberOfGGCTotal = numberOfGGCTotal + numberOfGGC;
-					}
-	*/
-	
-	
-
-//WIP Inserts/Updates DB NodeUID FirstName fields in mySqlDb
-function mwTreeData() { 
-//var arrayJsTreeData;
-arrayJsTreeData = [];
-var stridname1 = ("");
-for (var i = 0; i < mwnodes.length; i++) {
-//for (var i = 90; i < 33; i++) {
-var nodeNumber = (i);
-var nodeUID = (mwnodes[i].uid);
-arrayJsTreeData[arrayJsTreeData.length] = nodeUID;
-var nodeNumber = (i);
-arrayJsTreeData[arrayJsTreeData.length] = nodeNumber;
-var nodeName = (mwnodes[i].text);
-arrayJsTreeData[arrayJsTreeData.length] = nodeName;
-
-}
-
-var myJSON = JSON.stringify(arrayJsTreeData);
-//var obj, dbParam, xmlhttp;
-//obj = { "table":"customers", "limit":10 };
-//obj = myJSON;
-//dbParam = JSON.stringify(obj);
-xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-if (this.readyState == 4 && this.status == 200) {
-document.getElementById("demo").innerHTML = this.responseText;
-}
-};
-xmlhttp.open("GET", "connectMySqlDb.php?x=" + myJSON, true);
-xmlhttp.send();
-}	
-
-			
-
-
-

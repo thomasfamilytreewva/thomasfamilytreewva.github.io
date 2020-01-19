@@ -92,7 +92,7 @@ while (tables.length>0)
 			headerCell.innerHTML = "Comments";
             row.appendChild(headerCell)
      
-	 
+//add td table data
 			for (i in myObj) {
 nuid=myObj[i].NodeUID;
   fn = myObj[i].FirstName  ;

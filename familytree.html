@@ -1,45 +1,28 @@
 <!doctype html>
 <html>
-<!---15 jul 2019-->
+<!---17 Jan 2020
+Most of the javascript code is located on main.js and tree.js-->
+<!--I commented out this <script src="myJsFunctions.js"></script> 
+I don't think I use this script. Time will tell-->
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
-//var demo = document.getElementById("demo");
-//var sB = document.getElementById("searchButton");
-//sB.addEventListener("click", function(){
-//  var searchName = document.getElementById("searchName").value;
-//searchName = searchName.toUpperCase();
-//});
 </script>
 <script src="tree.js"></script>
 <script src="main.js"></script>
-<script src="myJsFunctions.js"></script>
-<style>
 
+<style>
 body {
     background-color: gold;
 }
-
-
 </style>
-
-
-
     <link rel="stylesheet" href="main.css"/>
-	
-	
-	
-
-
 </head>
 <body onload="initialize()">
-
-
 <!-- -->
 <div class="sticky">
 <div id="divstyle">
 <div id="header">
-<!--<p id="demo"> demo here</p>-->
 <a href="index.html">Main Menu</a><br>
 <!--
 <p>Use scroll bars to move tree up/down left/right.</p>
@@ -48,17 +31,14 @@ body {
 Enter First Name or Nick Name:<br>
   <input id="searchName" type="text"><br>
   <button id="searchButton">Search</button>
- 
+ <p id="demo"></p>
+
+
 </div>
 </div>
 </div>
-
-  
-
-
 <!--<div class="section"></div>-->
     <div id="information_panel"></div>
-
 	<div id="main">
     <canvas id="canvas"></canvas>
 </div>
@@ -80,27 +60,9 @@ Enter First Name or Nick Name:<br>
 
 -->
 <br>
-
-
-<div id="associatedAssets"></div>
-
-
-<table id="myTable">
-
 <br>
 
-<!--
-<div id='ajax' >
-<h3>This is the ajax div</h3>
-  <p>This is a paragraph.</p>
-</div>
-
--->
-
 <br>
-
-<p id="demo"></p>
-
 
 
 <?php include 'myPhpFunctions.php';?>
