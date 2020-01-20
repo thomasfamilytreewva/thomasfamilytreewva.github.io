@@ -8,10 +8,7 @@
 <script src="moment.min.js"></script>
 <script src="moment-precise-range.js"></script>
 <script src="factsfigures.js"></script>
-<style>
-table, th, td {
-  border: 1px solid black;
-}
+
 
 <style>
 table {
@@ -29,7 +26,46 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+tbody {
+    display:block;
+    height:100px;
+    overflow:auto;
+}
 </style>
+
+<style>
+.fixed_header{
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.fixed_header tbody{
+  display:block;
+  width: 100%;
+  overflow: auto;
+  height: 100px;
+}
+
+.fixed_header thead tr {
+   display: block;
+}
+
+.fixed_header thead {
+  background: black;
+  color:#fff;
+}
+
+.fixed_header th, .fixed_header td {
+  padding: 5px;
+  text-align: left;
+  width: 200px;
+}
+
+
+</style>
+
 
  </head>
  
@@ -41,10 +77,10 @@ tr:nth-child(even) {
 <p id="distinctCities"></p>  
  
  <button id="aIDT" onclick="allInfoDataTable()">All Info Data Table</button><br><br>
-  <button id="oLFM" onclick="oldestLivingFamilyMember()">Oldest Living Family Member?</button><br><br>
-  <button id="wlw" onclick="wholiveswhere()">Who Lives Where?</button><br><br>
+ <button id="wlw" onclick="wholiveswhere()">Who Lives Where?</button><br><br>
   <button id="p" onclick="population()">Population</button><br><br>
-  
-  
+  <button id="yLFM" onclick="youngestLivingFamilyMember()">Youngest Living Family Member?</button><br><br>
+  <button id="oLFM" onclick="oldestLivingFamilyMember()">Oldest Living Family Member?</button><br><br>
+
  </body>
 </html>

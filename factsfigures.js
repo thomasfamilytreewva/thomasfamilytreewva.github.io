@@ -20,6 +20,7 @@ while (tables.length>0)
 	//Create a HTML Table element.
         var table = document.createElement("TABLE");
 		var x = table.setAttribute("id", "allInfoDataTable");
+		table.className="fixed_header";
          table.border = "1";
 		 
 		 		document.body.appendChild(table);
@@ -29,6 +30,7 @@ while (tables.length>0)
         //Add the header row.
         var row = table.insertRow(-1);
           var headerCell = document.createElement("TH");
+		  var x = table.setAttribute("id", "allInfoDataTable");
             headerCell.innerHTML = "First Name";
             row.appendChild(headerCell);
 			
@@ -91,6 +93,10 @@ while (tables.length>0)
 			var headerCell = document.createElement("TH");
 			headerCell.innerHTML = "Comments";
             row.appendChild(headerCell)
+			
+			
+		//	var tb = document.createElement("TBODY");
+		//  var tbid = tb.setAttribute("id", "tablebodyID");
      
 //add td table data
 			for (i in myObj) {
@@ -663,6 +669,67 @@ document.getElementById("myDIV").appendChild(pemail);     // Append <p> to <div>
   
 
 
+function youngestLivingFamilyMember(){
+	var dobYoungest=("1600-01-01");
+	var given="";
+	var current="";
+	var fnYoungest="";
+for (i in myObj) {
+nuid=myObj[i].NodeUID;
+  fn = myObj[i].FirstName  ;
+   fn = fn.toUpperCase();
+    mn=myObj[i].MiddleName;
+ mn = mn.toUpperCase();
+  man=myObj[i].MaidenName;
+ man = man.toUpperCase();
+ ln=myObj[i].LastName;
+ ln = ln.toUpperCase();
+   nn=myObj[i].NickName;
+ nn = nn.toUpperCase();
+  fnn=myObj[i].FirstNickName;
+ fnn = fnn.toUpperCase();
+ dob =myObj[i].DateOfBirth;
+ dod =myObj[i].DateOfDeath;
+ 
+   if (nuid<1000){
+  
+ if(dod=="0000-00-00"){
+ if(dob=="0000-00-00"){
+ }else{
+//console.log(fn + " " + ln +  " was born " + dob);
+given = moment(dob);
+current = moment().startOf('day');
+//Difference in number of days
+//console.log(moment.duration(given.diff(current)).asDays());
+dobDays=(moment.duration(current.diff(given)).asDays());
+//dobDays= parseFloat(dobDays);
+
+given = moment(dobYoungest);
+current = moment().startOf('day');
+dobYoungestDays=(moment.duration(current.diff(given)).asDays());
+//dobYoungestDays= parseFloat(dobYoungestDays);
+
+
+
+if(dobDays<dobYoungestDays){
+	console.log("dobDays " + dobDays + " dobYoungestDays " + dobYoungestDays);
+	dobYoungestDays=dobDays;
+	dobYoungest = dob;
+	fnYoungest=fn;
+	lnYoungest =ln;
+	console.log("The Youngest living family member is " + fnYoungest+  " " + lnYoungest + ". Born " + dobYoungest);
+	
+}
+
+ } 
+ } 
+}
+}
+
+alert("The youngest living family member is " + fnYoungest + " " + lnYoungest + ". Born " + dobYoungest);
+
+}
+
 
 function oldestLivingFamilyMember(){
 	var dobOldest=moment().startOf('day');
@@ -686,7 +753,9 @@ nuid=myObj[i].NodeUID;
  dob =myObj[i].DateOfBirth;
  dod =myObj[i].DateOfDeath;
  
+  if (nuid<1000){
   
+
  if(dod=="0000-00-00"){
  if(dob=="0000-00-00"){
  }else{
@@ -700,15 +769,15 @@ given = moment(dob);
 current = moment().startOf('day');
 //Difference in number of days
 //console.log(moment.duration(given.diff(current)).asDays());
-dobDays=(moment.duration(given.diff(current)).asDays());
+dobDays=(moment.duration(current.diff(given)).asDays());
 
 given = moment(dobOldest);
 current = moment().startOf('day');
-dobOldestDays=(moment.duration(given.diff(current)).asDays());
+dobOldestDays=(moment.duration(current.diff(given)).asDays());
 
 
 
-if(dobDays<=dobOldestDays){
+if(dobDays>dobOldestDays){
 	console.log("dobDays " + dobDays + " dobOldestDays " + dobOldestDays);
 	dobOldestDays=dobDays;
 	dobOldest = dob;
@@ -722,7 +791,7 @@ if(dobDays<=dobOldestDays){
  } 
 }
 }
-
+}
 alert("The oldest living family member is " + fnOldest + " " + lnOldest + ". Born " + dobOldest);
 
 }
@@ -758,7 +827,38 @@ var current = moment().startOf('day');
 //Difference in number of days
 //console.log(moment.duration(given.diff(current)).asDays());
 dDD=(moment.duration(given.diff(current)).asDays());
-alert(dDD);
+//gives difference in negative number
+//alert(given + " " + current + " " + dDD);
+
+
+	//var given = moment("2021-01-07");
+	var DateOfBirth1 = ("2017-01-07");
+	//var DateOfBirth2 = ("2018-01-07");
+	//var DateOfBirth3 = ("2019-01-07");
+	var given = moment(DateOfBirth1);
+var current = moment().startOf('day');
+//Difference in number of days
+//console.log(moment.duration(given.diff(current)).asDays());
+dDD1=(moment.duration(current.diff(given)).asDays());
+alert(dDD1);
+
+var DateOfBirth2 = ("2018-01-07");
+	var given = moment(DateOfBirth2);
+var current = moment().startOf('day');
+//Difference in number of days
+//console.log(moment.duration(given.diff(current)).asDays());
+dDD2=(moment.duration(current.diff(given)).asDays());
+alert(dDD2);
+
+var DateOfBirth3 = ("2019-01-07");
+	var given = moment(DateOfBirth3);
+var current = moment().startOf('day');
+//Difference in number of days
+//console.log(moment.duration(given.diff(current)).asDays());
+dDD3=(moment.duration(current.diff(given)).asDays());
+alert(dDD3);
+
+
 }
 
 function GenerateTable() {

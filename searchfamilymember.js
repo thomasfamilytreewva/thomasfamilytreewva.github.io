@@ -16,95 +16,7 @@ var $idPhp = "";
 
   
 
-function createtesttable(){
-	//Build an array containing Customer records.
-        var customers = new Array();
-        customers.push(["Customer Id", "Name", "Country"]);
-        customers.push([1, "John Hammond", "United States"]);
-        customers.push([2, "Mudassar Khan", "India"]);
-        customers.push([3, "Suzanne Mathews", "France"]);
-        customers.push([4, "Robert Schidner", "Russia"]);
- 
-        //Create a HTML Table element.
-        var table = document.createElement("TABLE");
-		var x = table.setAttribute("id", "testtable");
-		table.className="fixed_header";
-		table.border = "1";
- 
-      //  Get the count of columns.
-       var columnCount = customers[0].length;
- 
-        //Add the header row.
-        var row = table.insertRow(-1);
-        for (var i = 0; i < columnCount; i++) {
-            var headerCell = document.createElement("TH");
-            headerCell.innerHTML = customers[0][i];
-            row.appendChild(headerCell);
-        }
- 
-        //Add the data rows.
-        for (var i = 1; i < customers.length; i++) {
-            row = table.insertRow(-1);
-            for (var j = 0; j < columnCount; j++) {
-                var cell = row.insertCell(-1);
-                cell.innerHTML = customers[i][j];
-            }
-        }
-		
-document.body.appendChild(table);
- document.getElementById("testtable").style.position = "static";
-     
-}
 
-
- function GenerateTable() {
-        //Build an array containing Customer records.
-        var customers = new Array();
-        customers.push(["Customer Id", "Name", "Country"]);
-        customers.push([1, "John Hammond", "United States"]);
-        customers.push([2, "Mudassar Khan", "India"]);
-        customers.push([3, "Suzanne Mathews", "France"]);
-        customers.push([4, "Robert Schidner", "Russia"]);
- 
-        //Create a HTML Table element.
-        var table = document.createElement("TABLE");
-		var x = table.setAttribute("id", "tableGT");
-  var tableId = ("tableGT");
-        table.border = "1";
- 
-         //Get the count of columns.
-        var columnCount = customers[0].length;
- 
-        //Add the header row.
-        var row = table.insertRow(-1);
-        for (var i = 0; i < columnCount; i++) {
-            var headerCell = document.createElement("TH");
-            headerCell.innerHTML = customers[0][i];
-            row.appendChild(headerCell);
-        }
- 
-        //Add the data rows.
-        for (var i = 1; i < customers.length; i++) {
-            row = table.insertRow(-1);
-            for (var j = 0; j < columnCount; j++) {
-                var cell = row.insertCell(-1);
-                cell.innerHTML = customers[i][j];
-            }
-        }
-		
-document.body.appendChild(table);
- document.getElementById("tableGT").style.position = "static";
-      //  var dvTable = document.getElementById("dvTable");
-       // dvTable.innerHTML = "";
-      //  dvTable.appendChild(table);
-    }
-
-
-function arrayAddElement(){
-    fruits[fruits.length] = "Lemon";
-    document.getElementById("demoArrayAddElement").innerHTML = fruits;
-}
-  
   
   
   
@@ -130,35 +42,13 @@ function showPhotoHere(){
 var idvar = 25
 	//var urlvar = "";
 		var urlvar = ("images/" + idvar + ".png");
-	  
-	// var repImage = "<img src=' " + urlvar + " '>"
+		// var repImage = "<img src=' " + urlvar + " '>"
 	 var repImage = "<img src=' " + urlvar + " '>";
-	
-	
-	var repImage = "<img src=' " + urlvar + " '>";
-	
-	document.getElementById("imgShowPhoto").src = urlvar;
+		var repImage = "<img src=' " + urlvar + " '>";
+		document.getElementById("imgShowPhoto").src = urlvar;
 	document.getElementById("imgShowPhoto1").src = "images/24.png";
 }
   
-  function showPhotoZZZ(){
-	var urlvar = "";
-	//alert (idvar);
-	//var repImage = '<img src="images/30.png" alt="Image alt">'; 
-	//var repImage = '<img src="images/" + 29 + "tom.png" alt="Image alt">'; 
-	// urlvar = "images/29.png";
-	idvar = "29";
-	urlvar = ("images/" + idvar + ".png");
-	  
-	// var repImage = "<img src=' " + urlvar + " '>"
-	 var repImage = "<img src=' " + urlvar + " '>";
-	
-	document.getElementById("imageholder").innerHTML= repImage;
-	
-	
-	}
-  
- 
 function myGuessExtractNumber(){
 	
 	var myguessOri = document.forms["myForm"]["fname"].value; 
@@ -191,9 +81,6 @@ if (ch >= '0' && ch <= '9')
 		
 	
 }
-
-
-
  console.log (idvar);
     
   if (window.XMLHttpRequest) {
@@ -211,9 +98,6 @@ if (ch >= '0' && ch <= '9')
  xmlhttp.open("GET","getuserowl.php?q="+idvar,true);
   xmlhttp.send();
  // idvar = "";
-
-
-	
 }
 
 
@@ -239,31 +123,10 @@ if (ch >= '0' && ch <= '9')
  xmlhttp.open("GET","getuserowl.php?q="+idvar,true);
   xmlhttp.send();
  // idvar = "";
-  
 }
-
-function loopThruArray(){
-	var fruits, text, fLen, i;
-fruits = ["Banana", "Orange", "Apple", "Mango"];
-fLen = fruits.length;
-
-text = "<ul>";
-for (i = 0; i < fLen; i++) {
-    text += "<li>" + fruits[i] + "</li>";
-}
-text += "</ul>";
-
-document.getElementById("demoloopThruArray").innerHTML = text;
-
-}
-
-
 
 function mySearch() {
-
 document.getElementById("imageholder").innerHTML= "";
-	
-
   try{
  var myDiv = document.getElementById("myDIV");
 myDiv.remove();
@@ -343,9 +206,7 @@ para.appendChild(node);
 
 }
  
- 
- 
-  
+   
 function addClick() {
     var table = document.getElementById('myTable');
     var cells = table.getElementsByTagName('td');
@@ -364,14 +225,8 @@ idvar=(document.getElementById("myTable").rows[rowId].cells[0].innerHTML);
 alert(idvar);
 }
    }
-
 }
 
-
-
- 
-  
- 
   function addClickTable(){
    var table = document.getElementById('myTable');
     var rows = table.getElementsByTagName('tr');
@@ -443,8 +298,6 @@ idvar = "";
 	 }
 
   
-  
-  
   function showFamilyMemberInfo(){
   
     for (i in myObj) {
@@ -484,7 +337,8 @@ idvar = "";
  city=myObj[i].City;
  //city=city.toUpperCase();
  state=myObj[i].State;
- //state=state.toUpperCase();
+ //state=state.toUpperCase
+  comments=myObj[i].Comments;
  }
 	}
 	
@@ -531,6 +385,12 @@ document.getElementById("myDIV").appendChild(ptel1);     // Append <p> to <div> 
 				var pemail = document.createElement("P");                 // Create a <p> element
 pemail.innerHTML = "Email: " + email;                // Insert text
 document.getElementById("myDIV").appendChild(pemail);     // Append <p> to <div> with id="myDIV"
+  
+  var pcomments = document.createElement("P");                 // Create a <p> element
+pcomments.innerHTML = "Comments: " + comments;                // Insert text
+document.getElementById("myDIV").appendChild(pcomments);     // Append <p> to <div> with id="myDIV"
+
+  
   }
   
 
