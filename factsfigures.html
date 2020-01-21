@@ -9,7 +9,7 @@
 <script src="moment-precise-range.js"></script>
 <script src="factsfigures.js"></script>
 
-<!--
+
 <style>
 table {
   font-family: arial, sans-serif;
@@ -27,13 +27,18 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
+
+
 tbody {
     display:block;
-    height:100px;
-    overflow:auto;
+    height:100%;
+ <!--   overflow:auto;  -->
 }
+
 </style>
 
+
+<!--
 <style>
 .fixed_header{
     width: 100%;
@@ -70,15 +75,16 @@ tbody {
 <body>
 
 <a href="index.html">Main Menu</a><br><br>
-
+<!--
 <p id="distinctStates"></p>  
-<p id="distinctCities"></p>  
+<p id="distinctCities"></p> 
+--> 
  
  <button id="aIDT" onclick="allInfoDataTable()">All Info Data Table</button><br><br>
- <button id="wlw" onclick="wholiveswhere()">Who Lives Where?</button><br><br>
-  <button id="p" onclick="population()">Population</button><br><br>
-  <button id="yLFM" onclick="youngestLivingFamilyMember()">Youngest Living Family Member?</button><br><br>
-  <button id="oLFM" onclick="oldestLivingFamilyMember()">Oldest Living Family Member?</button><br><br>
+ <button id="wlw" onclick="wholiveswhere()">List of living Thomas' by City State</button><br><br>
+  <button id="p" onclick="population()">Count of Thomas' by City State</button><br><br>
+  <button id="yLFM" onclick="youngestLivingFamilyMember()">Youngest Living Thomas Member?</button><br><br>
+  <button id="oLFM" onclick="oldestLivingFamilyMember()">Oldest Living Thomas Member?</button><br><br>
 
  </body>
 </html>
