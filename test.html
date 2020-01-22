@@ -5,12 +5,81 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="jquery-3.3.1.js"></script>
 <script src="myJsFunctions.js"></script>
+<script>
 
+function getbytagzzz() {
+ var tt = document.getElementById("zzz");
+  ttrl=(tt.rows.length);
+ var ttrl1 = document.getElementById("zzz").rows.length;
+       var x = document.getElementById("zzz").rows.length;
+  
+
+ alert (ttrl + " " + ttrl1 + " " + x);
+ var tr = document.getElementById("zzz").getElementsByTagName("tr");
+  var thead = document.getElementById("zzz").getElementsByTagName("thead");
+   var td = document.getElementById("zzz").getElementsByTagName("td");
+    var th = document.getElementById("zzz").getElementsByTagName("th");
+  alert(tt + " has " + tr.length + " tr" + thead.length + " thead" + td.length + " td" + th.length + " th");
+}
+</script>
+
+
+<script>
+function getbytagtt() {
+ var tt = document.getElementById("testtable");
+  ttrl=(tt.rows.length);
+ var ttrl1 = document.getElementById("testtable").rows.length;
+       var x = document.getElementById("testtable").rows.length;
+  
+
+ alert (ttrl + " " + ttrl1 + " " + x);
+ var tr = document.getElementById("testtable").getElementsByTagName("tr");
+  var thead = document.getElementById("testtable").getElementsByTagName("thead");
+   var td = document.getElementById("testtable").getElementsByTagName("td");
+  alert(tt + " has " + tr.length + " tr" + thead.length + " thead" + td.length + " td");
+}
+</script>
+
+
+
+
+<script>
+
+ function createTable(){
+  var x = document.createElement("TBODY");
+  var y = document.createElement("TR");
+   var z1 = document.createElement("TD");
+ var z2 = document.createElement("TD");
+  var z3 = document.createElement("TD");
+   var z4 = document.createElement("TD");
+    var z5 = document.createElement("TD");
+	 var z6 = document.createElement("TD");
+  z1.innerHTML = (nuid);
+ z2.innerHTML = (fn);
+ z3.innerHTML = (mn);
+ z4.innerHTML = (man);
+ z5.innerHTML = (ln);
+ z6.innerHTML = (nn);
+  y.appendChild(z1);
+    y.appendChild(z2);
+	y.appendChild(z3);
+	y.appendChild(z4);
+	y.appendChild(z5);
+	y.appendChild(z6);
+  x.appendChild(y);
+  document.getElementById("myTable").appendChild(x);
+  
+   var para = document.createElement("p");
+var node = document.createTextNode("Click on family member's name for details.");
+para.appendChild(node);
+
+}
+</script>
 
 <style>
 .fixed_header{
     width: 400px;
-    table-layout: fixed;
+    table-layout: auto;
     border-collapse: collapse;
 }
 
@@ -36,41 +105,6 @@
   width: 200px;
 }
 </style>
-
-
-
-
-<!-- This style works fine
-<style>
-.fixed_header{
-    width: 400px;
-    table-layout: fixed;
-    border-collapse: collapse;
-}
-
-.fixed_header tbody{
-  display:block;
-  width: 100%;
-  overflow: auto;
-  height: 100px;
-}
-
-.fixed_header thead tr {
-   display: block;
-}
-
-.fixed_header thead {
-  background: black;
-  color:#fff;
-}
-
-.fixed_header th, .fixed_header td {
-  padding: 5px;
-  text-align: left;
-  width: 200px;
-}
-</style>
--->
 
 <script>
 var myTable = document.getElementById("myTable");
@@ -78,16 +112,97 @@ var myObj = JSON.parse(localStorage["myObj"]);
 var rowIndex;
 </script>
   
+  
+   
+  <script>
+function createtesttable(){
+	//Build an array containing Customer records.
+        var customers = new Array();
+        customers.push(["Customer Id", "Name", "Country"]);
+        customers.push([1, "John Hammond", "United States"]);
+        customers.push([2, "Mudassar Khan", "India"]);
+        customers.push([3, "Suzanne Mathews", "France"]);
+        customers.push([4, "Robert Schidner", "Russia"]);
+ 
+        //Create a HTML Table element.
+        var table = document.createElement("table");
+		var x = table.setAttribute("id", "testtable");
+		table.className="fixed_header";
+		table.border = "1";
+document.body.appendChild(table);
+      //  Get the count of columns.
+       var columnCount = customers[0].length;
+ 
+        //Add the header with header cells
+		
+  var header = table.createTHead();
+  var row = header.insertRow(0);
+  table.appendChild(header);
+ // var cell = row.insertCell(0);
+ // cell.innerHTML = "<b>This is a table header</b>";
+        		
+         for (var i = 0; i < columnCount; i++) {
+            var headerCell = document.createElement("TH");
+            headerCell.innerHTML = customers[0][i];
+            row.appendChild(headerCell);
+        }
+ 
+        //Add the data rows.
+		//var row = header.insertRow(0);
+		var tb = document.createElement("TBODY");
+		table.appendChild(tb);
+        for (var i = 1; i < customers.length; i++) {
+            row = table.insertRow(-1);
+            for (var j = 0; j < columnCount; j++) {
+                var cell = row.insertCell(-1);
+                cell.innerHTML = customers[i][j];
+				            tb.appendChild(row);
+            }
+        }
+		
+//document.body.appendChild(table);
+ document.getElementById("testtable").style.position = "static";
+     
+}
+</script>
+
+
+
+ 
  </head>
 <body>
 
 <a href="index.html">Main Menu</a><br><br>	
+
+<p>Click on each td element to alert its position in the table row.</p>
+
+<table>
+  <tr>
+    <td onclick="myFunction(this)">Click to show cellIndex</td>
+    <td onclick="myFunction(this)">Click to show cellIndex</td>
+    <td onclick="myFunction(this)">Click to show cellIndex</td>
+    <td onclick="myFunction(this)">Click to show cellIndex</td>
+  </tr>
+</table>
+
+<script>
+function myFunction(x) {
+  alert("Cell index is: " + x.cellIndex);
+}
+</script>
+
+
+
+
+
+
 Enter First Name or Nick Name:<br>
 
   <input id="searchName" type="text"><br><br>
   <button id="SearchButton" onclick="mySearch()">Search</button><br><br>
   <button id="SearchButton" onclick="createtesttable()">Create Test Table</button><br><br>
-  
+   <button id="gbt" onclick="getbytagtt()">Get By Tag TT</button><br><br>
+    <button id="gbtzzz" onclick="getbytagzzz()">Get By Tag zzz</button><br><br>
   <p id="demo"></p>
   
    <script>
@@ -105,7 +220,7 @@ input.addEventListener("keyup", function(event) {
 </script> 
   
   
-<table class="fixed_header">
+<table id="zzz" class="fixed_header">
   <thead>
     <tr>
       <th>Col 1</th>
@@ -167,6 +282,22 @@ input.addEventListener("keyup", function(event) {
     </tr>
   </tbody>
 </table>
+
+
+<script>
+
+ var th = document.getElementById("zzz").getElementsByTagName("th");
+ for (var i=0; i<th.length; i++) {
+   th[i].onclick = function () {
+  //alert("click");
+ ci=this.cellIndex;
+ alert ("cellIndex is " + ci);
+  }
+ }
+
+ </script>
+ 
+
 
  </body>
 </html>

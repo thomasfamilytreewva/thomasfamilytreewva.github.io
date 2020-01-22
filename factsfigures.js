@@ -1,6 +1,5 @@
 //07 Jan 2020
 
-
 var myTable = document.getElementById("myTable");
 var myObj = JSON.parse(localStorage["myObj"]);
 var rowIndex;
@@ -9,6 +8,7 @@ var distinctCityDataState;
 var countOfLiving=0;
 	  var countOfDead=0;
 	  var countOfLivingPlusDead=0;
+	  var ci;
 	
 
 function allInfoDataTable(){
@@ -26,12 +26,24 @@ while (tables.length>0)
 		 		document.body.appendChild(table);
  document.getElementById("allInfoDataTable").style.position = "static";
 
-		 
+ 		 
         //Add the header row.
-        var row = table.insertRow(-1);
-          var headerCell = document.createElement("TH");
-		  var x = table.setAttribute("id", "allInfoDataTable");
-            headerCell.innerHTML = "First Name";
+     //ori   var row = table.insertRow(-1);
+      //ori    var headerCell = document.createElement("TH");
+	//ori	  var x = table.setAttribute("id", "allInfoDataTable");
+            
+			//Create a <thead> element (and insert a <tr> and <td> element to it):
+
+// Find a <table> element with id="allInfoMyTable":
+var table = document.getElementById("allInfoDataTable");
+// Create an empty <thead> element and add it to the table:
+var header = table.createTHead();
+// Create an empty <tr> element and add it to the first position of <thead>:
+var row = header.insertRow(0);  
+var headerCell = document.createElement("TH");  
+
+//ori continues here
+			headerCell.innerHTML = "First Name";
             row.appendChild(headerCell);
 			
 			 var headerCell = document.createElement("TH");
@@ -95,8 +107,8 @@ while (tables.length>0)
             row.appendChild(headerCell)
 			
 			
-		//	var tb = document.createElement("TBODY");
-		//  var tbid = tb.setAttribute("id", "tablebodyID");
+		var tb = document.createElement("TBODY");
+		table.appendChild(tb);
      
 //add td table data
 			for (i in myObj) {
@@ -180,10 +192,146 @@ nuid=myObj[i].NodeUID;
 				
 				var cell = row.insertCell(-1);
                 cell.innerHTML = comments;
+				
+				tb.appendChild(row);
             }
+			
+ //add on click with the below function
+ //allInfoDataTableAddClick()
+ 
+ //add on click with the below code
+ var th = document.getElementById("allInfoDataTable").getElementsByTagName("th");
+ for (var i=0; i<th.length; i++) {
+   th[i].onclick = function () {
+  //alert("click");
+ ci=this.cellIndex;
+ //alert ("cellIndex is " + ci);
+ n=ci;
+//allInfoDataTableSort(); //sorts table in ascending order only
+ allInfoDataTableSortAD(n)
+  }
+ }
+
+
         }
 			
-		
+	//sorts table in ascending and descending order
+	function allInfoDataTableSortAD(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("allInfoDataTable");
+  switching = true;
+  // Set the sorting direction to ascending:
+  dir = "asc";
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 1; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /* Check if the two rows should switch place,
+      based on the direction, asc or desc: */
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      // Each time a switch is done, increase this count by 1:
+      switchcount ++;
+    } else {
+      /* If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again. */
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+
+	
+  //sorts table in ascending order only
+  function allInfoDataTableSort() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("allInfoDataTable");
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[ci];
+      y = rows[i + 1].getElementsByTagName("TD")[ci];
+      //check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+
+function allInfoDataTableAddClick(){
+   var table = document.getElementById('allInfoDataTable');
+   //var rows = table.getElementsByTagName('tr');
+   //for (var i = 0; i < rows.length; i++) {
+        // Take each cell
+     var row = table.rows[0];
+    
+         // do something on onclick event for cell
+     row.onclick = function () {
+		 alert(this.cells[0].innerHTML);
+		  
+
+		 var thead = document.getElementById("allInfoDataTable").getElementsByTagName("thead");
+		 var th = document.getElementById("allInfoDataTable").getElementsByTagName("th");
+		 var td = document.getElementById("allInfoDataTable").getElementsByTagName("td");
+
+		 alert ("thead " + thead.length + "   th " + th.length + "   td " + td.length);
+		 alert(td.cellIndex);
+		 		 alert("Cell index is: " + td.cellIndex);
+				alert(table.cellIndex);
+		 }
+		//}
+}
+	
     
 
   function wholiveswhere(){
@@ -352,42 +500,6 @@ for (var i in distinct) {
    }
 
   
-  
-  function sortTable() {
-  var table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById("myTable");
-  switching = true;
-  /*Make a loop that will continue until
-  no switching has been done:*/
-  while (switching) {
-    //start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /*Loop through all table rows (except the
-    first, which contains table headers):*/
-    for (i = 1; i < (rows.length - 1); i++) {
-      //start by saying there should be no switching:
-      shouldSwitch = false;
-      /*Get the two elements you want to compare,
-      one from current row and one from the next:*/
-      x = rows[i].getElementsByTagName("TD")[0];
-      y = rows[i + 1].getElementsByTagName("TD")[0];
-      //check if the two rows should switch place:
-      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-        //if so, mark as a switch and break the loop:
-        shouldSwitch = true;
-        break;
-      }
-    }
-    if (shouldSwitch) {
-      /*If a switch has been marked, make the switch
-      and mark that a switch has been done:*/
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-    }
-  }
-}
-
 
 
 function mySearch() {

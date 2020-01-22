@@ -262,8 +262,11 @@ window.scrollBy(screenWidth, 0);
 //Table is created to hold data of names that match searchName
 //Then a clickListener is added to that table
 	if (countersearchName > 1){
-		alert("There are multiple matches for your search " + searchName);
+		alert("There are multiple matches for your search " + searchName
+		+ "\n Click on the member of your choice.");
 		 window.scrollTo(-0,-0);
+		 		 
+		 
 	//Create a HTML Table element.
         var table = document.createElement("TABLE");
 		var x = table.setAttribute("id", "mySearchFamilyTreeTable");

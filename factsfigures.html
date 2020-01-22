@@ -9,40 +9,39 @@
 <script src="moment-precise-range.js"></script>
 <script src="factsfigures.js"></script>
 
-
 <style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+table, th, td {
+  border: 1px solid black;
 }
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-
-
-
-tbody {
-    display:block;
-    height:100%;
- <!--   overflow:auto;  -->
-}
-
 </style>
 
 
-<!--
+
 <style>
+.fixed_header table, th, td {
+  border: 1px solid black;
+}
+</style>
+<!--
+.fixed_header tbody{
+  display:block;
+  width: 100%;
+  overflow: auto;
+  height: 400px;
+}
+
+.fixed_header th, .fixed_header td {
+  padding: 5px;
+  text-align: left;
+  width: 100px;
+ 
+}
+
+<!--
+
 .fixed_header{
-    width: 100%;
-    table-layout: fixed;
+    width: 400px;
+    table-layout: auto;
     border-collapse: collapse;
 }
 
@@ -50,7 +49,7 @@ tbody {
   display:block;
   width: 100%;
   overflow: auto;
-  height: 100px;
+  height: 400px;
 }
 
 .fixed_header thead tr {
@@ -67,8 +66,11 @@ tbody {
   text-align: left;
   width: 200px;
 }
+
 </style>
 -->
+
+<!--comments tag-->
 
  </head>
  
@@ -79,10 +81,10 @@ tbody {
 <p id="distinctStates"></p>  
 <p id="distinctCities"></p> 
 --> 
- 
+
  <button id="aIDT" onclick="allInfoDataTable()">All Info Data Table</button><br><br>
- <button id="wlw" onclick="wholiveswhere()">List of living Thomas' by City State</button><br><br>
-  <button id="p" onclick="population()">Count of Thomas' by City State</button><br><br>
+ <button id="wlw" onclick="wholiveswhere()">List of living Thomases by City State</button><br><br>
+  <button id="p" onclick="population()">Count of Thomases by City State</button><br><br>
   <button id="yLFM" onclick="youngestLivingFamilyMember()">Youngest Living Thomas Member?</button><br><br>
   <button id="oLFM" onclick="oldestLivingFamilyMember()">Oldest Living Thomas Member?</button><br><br>
 
