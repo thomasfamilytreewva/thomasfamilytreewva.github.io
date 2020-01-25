@@ -410,6 +410,8 @@ function distinctCityData(){
 	 distinctCityDataState=state;
 	 console.log (city+distinctCityDataState+fn+nn+ln);
 	 //alert (stateName);
+	 
+	 if(nuid<1000){
 	var x=document.getElementById("table"+distinctCityDataState);
 	//console.log(cityName +distinctCityDataState+fn+nn+ln);
 	
@@ -422,6 +424,7 @@ function distinctCityData(){
                 cell.innerHTML = nn;
 				var cell = row.insertCell(3);
                 cell.innerHTML = ln;
+	 }
  }
  }		
 }
