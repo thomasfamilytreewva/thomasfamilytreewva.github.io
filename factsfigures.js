@@ -406,7 +406,7 @@ function distinctCityData(){
  
 
  if (cityName == city){
-	  if (podc==""){
+//start of if podc	  if (podc==""){
 	 distinctCityDataState=state;
 	 console.log (city+distinctCityDataState+fn+nn+ln);
 	 //alert (stateName);
@@ -425,7 +425,7 @@ function distinctCityData(){
 				var cell = row.insertCell(3);
                 cell.innerHTML = ln;
 	 }
- }
+//end of if podc }
  }		
 }
 }
@@ -1169,7 +1169,7 @@ for (var i in distinct) {
 }
 
 function populationCityData(){
-	  countOfLiving=0;
+		  countOfLiving=0;
 	  countOfDead=0;
 	  countOfLivingPlusDead=0;
 
@@ -1196,33 +1196,19 @@ function populationCityData(){
  state = state.toUpperCase()
  podc=myObj[i].PlaceOfDeathCity;
  
-
+if(nuid<100){
  if (cityName == city){
 	  if (podc==""){
 		  countOfLiving = countOfLiving + 1
 	 distinctCityDataState=state;
 	 console.log (city+distinctCityDataState+fn+nn+ln);
-	
-	
-//	var x=document.getElementById("table"+distinctCityDataState);
- //row = x.insertRow(-1);
-  //              var cell = row.insertCell(-1);
- //               cell.innerHTML = city;
-//				var cell = row.insertCell(1);
-   //             cell.innerHTML = "Total Living";
-//				var cell = row.insertCell(2);
- //               cell.innerHTML = "Total Dead";
-//				var cell = row.insertCell(3);
-  //              cell.innerHTML = "Total L+D";
-
-	
  }	else{
 	 countOfDead = countOfDead + 1;
  }	
 }
 
 countOfLivingPlusDead = countOfLiving+ countOfDead;
-
+		 }
  }
 
 }
