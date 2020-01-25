@@ -26,26 +26,21 @@ while (tables.length>0)
 		 		document.body.appendChild(table);
  document.getElementById("allInfoDataTable").style.position = "static";
 
- 		 
-        //Add the header row.
-     //ori   var row = table.insertRow(-1);
-      //ori    var headerCell = document.createElement("TH");
-	//ori	  var x = table.setAttribute("id", "allInfoDataTable");
-            
-			//Create a <thead> element (and insert a <tr> and <td> element to it):
-
+ 			//Create a <thead> element (and insert a <tr> and <td> element to it):
 // Find a <table> element with id="allInfoMyTable":
 var table = document.getElementById("allInfoDataTable");
 // Create an empty <thead> element and add it to the table:
 var header = table.createTHead();
 // Create an empty <tr> element and add it to the first position of <thead>:
 var row = header.insertRow(0);  
-var headerCell = document.createElement("TH");  
-
-//ori continues here
-			headerCell.innerHTML = "First Name";
+             var headerCell = document.createElement("TH");  
+            headerCell.innerHTML = "NUID";
             row.appendChild(headerCell);
 			
+			 var headerCell = document.createElement("TH");
+			headerCell.innerHTML = "First Name";
+            row.appendChild(headerCell);
+						
 			 var headerCell = document.createElement("TH");
 			headerCell.innerHTML = "Middle Name";
             row.appendChild(headerCell)
@@ -145,7 +140,10 @@ nuid=myObj[i].NodeUID;
     comments=myObj[i].Comments;
  
                    row = table.insertRow(-1);
-               var cell = row.insertCell(-1);
+				   var cell = row.insertCell(-1);
+                cell.innerHTML = nuid;
+
+				var cell = row.insertCell(-1);
                 cell.innerHTML = fn;
 				
 				  var cell = row.insertCell(-1);

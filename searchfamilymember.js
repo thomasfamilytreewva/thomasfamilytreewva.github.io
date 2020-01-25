@@ -13,6 +13,7 @@ var $idPhp = "";
   var response = ""
   var correctIncorrect = "";
   var photoname = "";
+  var searchNameFoundYesNo="";
 
   
 
@@ -126,6 +127,7 @@ if (ch >= '0' && ch <= '9')
 }
 
 function mySearch() {
+	searchNameFoundYesNo="No";
 document.getElementById("imageholder").innerHTML= "";
   try{
  var myDiv = document.getElementById("myDIV");
@@ -165,7 +167,7 @@ state=myObj[i].State;
 
 
  if (fnn.includes(searchName)==true){
- 
+searchNameFoundYesNo="Yes";
   createTable();
   document.getElementById("myTable").style.visibility = "visible";
   document.getElementById("clickForDetails").style.visibility = "visible";
@@ -174,6 +176,12 @@ state=myObj[i].State;
  }
  
   }
+  
+  
+  if (searchNameFoundYesNo=="No"){
+alert("No match was found for your search " + searchName);	 
+return;
+ }
 
 // var x = document.getElementById("myTable").rows.length;
 }
