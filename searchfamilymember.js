@@ -146,7 +146,7 @@ searchName = searchName.toUpperCase();
   
 for (i in myObj) {
 nuid=myObj[i].NodeUID;
-  fn = myObj[i].FirstName  ;
+  fn = myObj[i].FirstName;
    fn = fn.toUpperCase();
     mn=myObj[i].MiddleName;
  mn = mn.toUpperCase();
@@ -158,6 +158,11 @@ nuid=myObj[i].NodeUID;
  nn = nn.toUpperCase();
   fnn=myObj[i].FirstNickName;
  fnn = fnn.toUpperCase();
+  city=myObj[i].City;
+  city = city.toUpperCase();
+state=myObj[i].State;
+  state = state.toUpperCase();
+
 
  if (fnn.includes(searchName)==true){
  
@@ -185,18 +190,25 @@ nuid=myObj[i].NodeUID;
    var z4 = document.createElement("TD");
     var z5 = document.createElement("TD");
 	 var z6 = document.createElement("TD");
+	 var z7 = document.createElement("TD");
+	 var z8 = document.createElement("TD");
   z1.innerHTML = (nuid);
  z2.innerHTML = (fn);
  z3.innerHTML = (mn);
  z4.innerHTML = (man);
  z5.innerHTML = (ln);
  z6.innerHTML = (nn);
+ z7.innerHTML = (city);
+ z8.innerHTML = (state);
+ 
   y.appendChild(z1);
     y.appendChild(z2);
 	y.appendChild(z3);
 	y.appendChild(z4);
 	y.appendChild(z5);
 	y.appendChild(z6);
+	y.appendChild(z7);
+	y.appendChild(z8);
   x.appendChild(y);
   document.getElementById("myTable").appendChild(x);
   
