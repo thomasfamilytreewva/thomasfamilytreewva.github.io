@@ -239,7 +239,7 @@ var TREE = (function () {
             var config = {
                     maxDepth: 100,
                     levelSeparation: 40,
-                    siblingSeparation: 20,
+                    siblingSeparation: 0,
                     subtreeSeparation: 20,
                     topXAdjustment: 0,
                     topYAdjustment: 20
